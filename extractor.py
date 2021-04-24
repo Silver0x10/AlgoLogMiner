@@ -143,7 +143,8 @@ def setEvent(txn, eventMapping, trace, switches):
             attributeValue = datetime.utcfromtimestamp(float(attributeValue))
             event.get_attributes()[attributeKey] = XFactory.create_attribute_timestamp(attributeKey, attributeValue)
         # event.get_attributes()[attributeKey] = XFactory.create_attribute_literal(attributeKey, attributeValue)
-    if(ok): trace.append(event)
+    # if(ok): trace.append(event)
+    if(ok): trace.insert_ordered(event)
 
 
 # def setTrace(transaction, trace, traceMap, eventMapping):
@@ -187,6 +188,9 @@ def setTraces(transactions, traces, traceMap, eventMappings, switches):
         for eventMap in eventMappings:
             setEvent(txn, eventMap, trace, switches)
 
+def sortEventsByTimestamp(trace):
+    print(type(trace))
+
 def mapLog(log, mappings, indexer, switches):
     # defaultTrace = XFactory.create_trace()
     traces = {}
@@ -203,7 +207,7 @@ def mapLog(log, mappings, indexer, switches):
 
             for traceMap in logMap["traceMappings"]:
                 setTraces(usefulTransactions, traces, traceMap, logMap["eventMappings"], switches)
-            
+
     for traceId in traces:
         log.append(traces[traceId])
     # log.append(defaultTrace)
