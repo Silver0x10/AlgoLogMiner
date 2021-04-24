@@ -1,0 +1,36 @@
+{
+    "xesExtensions" : [
+        {"name" : "", "prefix" : "", "uri" : ""}
+    ],
+    "xesClassifiers" : [
+        
+    ],
+    "xesGlobals" : [
+        
+    ],
+    "accountMappings" : [
+        {   
+            "indexerFilters" : [
+                {"key" : "", "val" : "", "type" : ""}
+            ],
+            "logMappings" : [
+                {
+                    "eventName" : "",
+                    "filters" : {
+                        "" : [""]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "" : { "" : { "value" : "", "type" : "" } }
+                        }
+                    ]                
+                }
+            ]
+        }
+    ]
+}

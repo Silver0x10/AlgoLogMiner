@@ -1,0 +1,120 @@
+{
+    "xesExtensions" : [
+        {"name" : "Time", "prefix" : "time", "uri" : "http://www.xes-standard.org/time.xesext"},
+        {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"},
+        {"name" : "Identity", "prefix" : "identity", "uri" : "http://www.xes-standard.org/identity.xesext"}
+    ],
+    "xesClassifiers" : [
+        
+    ],
+    "xesGlobals" : [
+        
+    ],
+    "switches" : {
+        "eventNames" : {
+            "Browse Products on Amazon" : "Browse Products on Amazon",
+            "Add Item to Cart" : "Add Item to Cart",
+            "Pay Order" : "Pay Order",
+            "Take Payment" : "Take Payment",
+            "Pick Items" : "Pick Items",
+            "Place in Bin" : "Place in Bin",
+            "Receive and Package Items" : "Receive and Package Items",
+            "Send to Carrier Dock" : "Send to Carrier Dock",
+            "Load Truck" : "Load Truck",
+            "Deliver Items" : "Deliver Items",
+            "Receive Items" : "Receive Items"
+        }
+    },
+    "mappings" : [
+        {   
+            "indexerFilters" : [
+                [ 
+                    {"key" : "address", "val" : "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU", "type" : "address"},
+                    {"key" : "min_round", "val" : "59400", "type" : "int"},
+                    {"key" : "max_round", "val" : "59600", "type" : "int"} 
+                ]
+            ],
+            "logMappings" : [
+                {
+                    "mappingName" : "",
+                    "singleTxnFilters" : {
+                        "tx-type" : ["pay"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "parameter" : { "key" : "note.trace-id", "type" : "int" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Browse Products on Amazon", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } }
+                        },
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Add Item to Cart", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                        },
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Pay Order", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } },
+                            "attempt-num" : { "parameter" : { "key" : "note.attempt-num", "type" : "int" } }
+                        },
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Take Payment", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
+                            "accepted" : { "parameter" : { "key" : "note.accepted", "type" : "string" } }
+                        },
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Pick Items", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                        },
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Place in Bin", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                        },
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Receive and Package Items", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                        },
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Send to Carrier Dock", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                        },
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Load Truck", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                        },
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Deliver Items", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                        },
+                        {
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Receive Items", "key" : "note.event-name", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                        }
+                    ]                
+                }
+            ]
+        }
+    ]
+}

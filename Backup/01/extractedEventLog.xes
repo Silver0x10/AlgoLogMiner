@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<!--This file has been generated with the OpenXES library. It conforms-->
+<!--to the XML serialization of the XES standard for log storage and-->
+<!--management.-->
+<!--XES standard version: 1.0-->
+<!--OpenXES library version: 1.0RC7-->
+<!--OpenXES is available from http://www.openxes.org/-->
+<log xes.version="1.0" xes.features="nested-attributes" openxes.version="1.0RC7">
+	<extension name="Identity" prefix="identity" uri="http://www.xes-standard.org/identity.xesext"/>
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
+	<trace>
+		<event>
+			<string key="concept:name" value="Generation of Piece Asset"/>
+			<int key="amount" value="11"/>
+			<int key="assetID" value="33"/>
+			<date key="time:timestamp" value="2021-01-21T08:50:06.000Z"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Generation of Turn Asset"/>
+			<int key="amount" value="1"/>
+			<int key="assetID" value="34"/>
+			<date key="time:timestamp" value="2021-01-21T08:50:56.000Z"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Sink Generation"/>
+			<int key="amount" value="300000"/>
+			<date key="time:timestamp" value="2021-01-21T08:51:46.000Z"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Table Generation"/>
+			<int key="amount" value="300000"/>
+			<date key="time:timestamp" value="2021-01-21T08:53:26.000Z"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Pieces to Table"/>
+			<int key="amount" value="11"/>
+			<date key="time:timestamp" value="2021-01-21T08:54:16.000Z"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Bet Escrow Player 1 Account generation"/>
+			<int key="amount" value="100000"/>
+			<date key="time:timestamp" value="2021-01-21T08:55:06.000Z"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Bet Escrow Player 2 Account generation"/>
+			<int key="amount" value="100000"/>
+			<date key="time:timestamp" value="2021-01-21T08:55:56.000Z"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Bet Player 1"/>
+			<int key="amount" value="42000"/>
+			<date key="time:timestamp" value="2021-01-21T09:09:41.000Z"/>
+			<string key="group" value="2rw9qP5PX905PGM63Un5WkWV7eef+ChBOrTuH1eMHoI="/>
+		</event>
+		<event>
+			<string key="concept:name" value="Move Player 1"/>
+			<int key="amount" value="1"/>
+			<date key="time:timestamp" value="2021-01-21T09:35:06.000Z"/>
+			<string key="group" value="39mdrQ/WuKAYgE0GiUfAXXebf7xAvpe2lVRzmpT2k5E="/>
+			<int key="group-offset" value="0"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Move Player 1"/>
+			<int key="amount" value="1"/>
+			<date key="time:timestamp" value="2021-01-21T09:32:36.000Z"/>
+			<string key="group" value="WiRTjjLgHN/m24YYSj5sC4dDJXRrifVUHhcNQQ+bRBw="/>
+			<int key="group-offset" value="0"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Move Player 1"/>
+			<int key="amount" value="1"/>
+			<date key="time:timestamp" value="2021-01-21T09:25:56.000Z"/>
+			<string key="group" value="D/5RRDZsTHX3I5CPesoW+HMKYuREYa3wHu+WyHZ0hLs="/>
+			<int key="group-offset" value="0"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Bet Player 2"/>
+			<int key="amount" value="42000"/>
+			<date key="time:timestamp" value="2021-01-21T09:09:41.000Z"/>
+			<string key="group" value="2rw9qP5PX905PGM63Un5WkWV7eef+ChBOrTuH1eMHoI="/>
+		</event>
+		<event>
+			<string key="concept:name" value="Move Player 2"/>
+			<int key="amount" value="1"/>
+			<date key="time:timestamp" value="2021-01-21T09:34:16.000Z"/>
+			<string key="group" value="3o0RLFWNh8Do127rnoh7J2EnggAWv1un7+HafAcvsjQ="/>
+			<int key="group-offset" value="0"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Move Player 2"/>
+			<int key="amount" value="1"/>
+			<date key="time:timestamp" value="2021-01-21T09:28:26.000Z"/>
+			<string key="group" value="wdOYsBanC14ZCNkeR+S4f3jNv80b2QniRcaN7UafvsY="/>
+			<int key="group-offset" value="0"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Moved Pieces"/>
+			<int key="amount" value="2"/>
+			<date key="time:timestamp" value="2021-01-21T09:35:06.000Z"/>
+			<string key="group" value="39mdrQ/WuKAYgE0GiUfAXXebf7xAvpe2lVRzmpT2k5E="/>
+			<int key="group-offset" value="1"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Moved Pieces"/>
+			<int key="amount" value="2"/>
+			<date key="time:timestamp" value="2021-01-21T09:34:16.000Z"/>
+			<string key="group" value="3o0RLFWNh8Do127rnoh7J2EnggAWv1un7+HafAcvsjQ="/>
+			<int key="group-offset" value="1"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Moved Pieces"/>
+			<int key="amount" value="1"/>
+			<date key="time:timestamp" value="2021-01-21T09:32:36.000Z"/>
+			<string key="group" value="WiRTjjLgHN/m24YYSj5sC4dDJXRrifVUHhcNQQ+bRBw="/>
+			<int key="group-offset" value="1"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Moved Pieces"/>
+			<int key="amount" value="3"/>
+			<date key="time:timestamp" value="2021-01-21T09:28:26.000Z"/>
+			<string key="group" value="wdOYsBanC14ZCNkeR+S4f3jNv80b2QniRcaN7UafvsY="/>
+			<int key="group-offset" value="1"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Moved Pieces"/>
+			<int key="amount" value="3"/>
+			<date key="time:timestamp" value="2021-01-21T09:25:56.000Z"/>
+			<string key="group" value="D/5RRDZsTHX3I5CPesoW+HMKYuREYa3wHu+WyHZ0hLs="/>
+			<int key="group-offset" value="1"/>
+		</event>
+		<event>
+			<string key="concept:name" value="All Pieces to the Winner"/>
+			<int key="amount" value="11"/>
+			<date key="time:timestamp" value="2021-01-21T09:35:06.000Z"/>
+			<string key="group" value="39mdrQ/WuKAYgE0GiUfAXXebf7xAvpe2lVRzmpT2k5E="/>
+			<int key="group-offset" value="2"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Player 1 wins and gets paid from Escrow 2"/>
+			<int key="amount" value="0"/>
+			<date key="time:timestamp" value="2021-01-21T09:35:06.000Z"/>
+			<string key="group" value="39mdrQ/WuKAYgE0GiUfAXXebf7xAvpe2lVRzmpT2k5E="/>
+			<int key="group-offset" value="3"/>
+		</event>
+	</trace>
+</log>

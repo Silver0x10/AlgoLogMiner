@@ -1,0 +1,164 @@
+silverio@Flash:~/Scrivania/Tirocinio/algonim$ python3 algonim.py join "month word black hawk member fatigue enrich disagree gather major toilet urge hamster dentist infant mesh gorilla laptop segment method tuna belt box abstract grit"
+                                                               
+      _       __                 ____  _____   _               
+     / \     [  |               |_   \|_   _| (_)              
+    / _ \     | |  .--./)  .--.   |   \ | |   __   _ .--..--.  
+   / ___ \    | | / /'`\;/ .'`\ \ | |\ \| |  [  | [ `.-. .-. | 
+ _/ /   \ \_  | | \ \._//| \__. |_| |_\   |_  | |  | | | | | | 
+|____| |____|[___].',__`  '.__.'|_____|\____|[___][___||__||__]
+                 ( ( __))                                      
+                                                       by cusma
+                                                               
+  Welcome to AlgoNim, the first crypto-mini-game on Algorand!  
+
+The Dealer wants to bet 0.0 ALGO.
+Do you want to join the match? [y/N]y
+
+AlgoNim ASA Piece Opt-In...
+Transaction ID: 55HKO3XPABBO5NVHMYCJXFBQPKEC345YTQ6WPFZSJMEWSNENMKNA
+Waiting for confirmation...
+Transaction 55HKO3XPABBO5NVHMYCJXFBQPKEC345YTQ6WPFZSJMEWSNENMKNA confirmed in round 2896.
+
+AlgoNim ASA Turn Opt-In...
+Transaction ID: Z74KJ2FIANEQ2ZSYZBNLNA27LHEUZEPPYQZ6RYTTE6YXJPCHZK5Q
+Waiting for confirmation...
+Transaction Z74KJ2FIANEQ2ZSYZBNLNA27LHEUZEPPYQZ6RYTTE6YXJPCHZK5Q confirmed in round 2898.
+
+Players betting...
+Transaction ID:  XZ3OTPJDY7V5ZRZG4Y53OQSHGXFTO3LZ424JNPE26DOGQX2OYYOQ
+Waiting for confirmation...
+Transaction XZ3OTPJDY7V5ZRZG4Y53OQSHGXFTO3LZ424JNPE26DOGQX2OYYOQ confirmed in round 2900.
+                                
+              _       _         
+  /\/\   __ _| |_ ___| |__    _ 
+ /    \ / _` | __/ __| '_ \  (_)
+/ /\/\ \ (_| | || (__| | | |  _ 
+\/    \/\__,_|\__\___|_| |_| (_)
+                                
+MATCH DURATION:		 180.0 min
+PIECES ON GAME TABLE:	 21 
+
+RULES:
+1. Players on each turn must remove at least 1 ASA Piece
+2. Players on each turn must remove at most 4 ASA Piece
+3. Who removes the last ASA Piece form the Game Table wins the match!
+
+Player 1 - Dealer:	LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU
+Player 2 - Opponent:	YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA 
+
+AlgoNim ASA Pieces ID:	 3
+AlgoNim ASA Turn ID:	 4 
+
+AlgoNim Sink Account:			GAJNKNP55OKQJ3SYLTJWNL5Z5I6SF2X42LGKETLVPKMGLJGS2IXVCXR4CI
+AlgoNim Game Table Account:		GHQRSPYGH5SMN3H6UALOE4ULKT6LFMHPBQCUGGGNF25DBN375JIDOGPMTQ
+AlgoNim Bet Escrow Player 1 Account:	3JQAEQLMPVKDGDXEE3MOZIN2I5NCCT2UZXUGAYSYALZTJ6BMFOOHEJQOUY
+AlgoNim Bet Escrow Player 2 Account:	G2C7KX2XTKMXNCVLW2AOK7ETHP4VBOC2ANDQDAZIZ6KANN6YXG4KCVWB7A
+
+May the best win!
+
+
+silverio@Flash:~/Scrivania/Tirocinio/algonim$ python3 algonim.py status YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA
+
+MATCH TOTAL PIECES:		21
+PIECES ON THE GAME TABLE:	21
+Your opponent is playing the turn...
+
+OPPONENT BET ESCROW AMOUNT:	 100000
+YOUR BET ESCROW AMOUNT:		 100000
+Your Bet Escrow is still locked. 1908 blocks left!
+
+silverio@Flash:~/Scrivania/Tirocinio/algonim$ python3 algonim.py play "month word black hawk member fatigue enrich disagree gather major toilet urge hamster dentist infant mesh gorilla laptop segment method tuna belt box abstract grit" 4
+
+Removing 4 pieces from the Game Table...
+Transaction ID:  JQXFOO4PITMX3H2D5LKM4JSJ3LVDYY3V2MGBVMBEWASRDCKCVDJA
+Waiting for confirmation...
+Transaction JQXFOO4PITMX3H2D5LKM4JSJ3LVDYY3V2MGBVMBEWASRDCKCVDJA confirmed in round 2986.
+
+
+silverio@Flash:~/Scrivania/Tirocinio/algonim$ python3 algonim.py play "month word black hawk member fatigue enrich disagree gather major toilet urge hamster dentist infant mesh gorilla laptop segment method tuna belt box abstract grit" 5
+Traceback (most recent call last):
+  File "/home/silverio/.local/lib/python3.8/site-packages/algosdk/v2client/algod.py", line 72, in algod_request
+    resp = urlopen(req)
+  File "/usr/lib/python3.8/urllib/request.py", line 222, in urlopen
+    return opener.open(url, data, timeout)
+  File "/usr/lib/python3.8/urllib/request.py", line 531, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.8/urllib/request.py", line 640, in http_response
+    response = self.parent.error(
+  File "/usr/lib/python3.8/urllib/request.py", line 569, in error
+    return self._call_chain(*args)
+  File "/usr/lib/python3.8/urllib/request.py", line 502, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.8/urllib/request.py", line 649, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 400: Bad Request
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/silverio/.local/lib/python3.8/site-packages/algosdk/v2client/algod.py", line 77, in algod_request
+    raise error.AlgodHTTPError(json.loads(e)["message"], code)
+algosdk.error.AlgodHTTPError: transaction WCVTI5TDZFOLWBDAIWW6734GGNN7UDCCQEDIJVZ6WHFNAU5HKBVQ: rejected by logic
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "algonim.py", line 318, in <module>
+    main()
+  File "algonim.py", line 202, in main
+    play_turn(algod_client, player, addr_adversary,
+  File "/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim/algonim_moves.py", line 101, in play_turn
+    txid = algod_client.send_transactions(sgtxn)
+  File "/home/silverio/.local/lib/python3.8/site-packages/algosdk/v2client/algod.py", line 248, in send_transactions
+    return self.send_raw_transaction(base64.b64encode(
+  File "/home/silverio/.local/lib/python3.8/site-packages/algosdk/v2client/algod.py", line 189, in send_raw_transaction
+    return self.algod_request("POST", req, data=txn, headers=headers, **kwargs)["txId"]
+  File "/home/silverio/.local/lib/python3.8/site-packages/algosdk/v2client/algod.py", line 79, in algod_request
+    raise error.AlgodHTTPError(e, code)
+algosdk.error.AlgodHTTPError: {"message":"transaction WCVTI5TDZFOLWBDAIWW6734GGNN7UDCCQEDIJVZ6WHFNAU5HKBVQ: rejected by logic"}
+
+silverio@Flash:~/Scrivania/Tirocinio/algonim$ python3 algonim.py play "month word black hawk member fatigue enrich disagree gather major toilet urge hamster dentist infant mesh gorilla laptop segment method tuna belt box abstract grit" 4
+
+Removing 4 pieces from the Game Table...
+Transaction ID:  CYROJXZLIYFETYC3B3CJ46ZOJM3HIAL6HRGS6CNYVV7UTP6CSVCQ
+Waiting for confirmation...
+Transaction CYROJXZLIYFETYC3B3CJ46ZOJM3HIAL6HRGS6CNYVV7UTP6CSVCQ confirmed in round 3002.
+
+
+silverio@Flash:~/Scrivania/Tirocinio/algonim$ python3 algonim.py status YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA
+
+MATCH TOTAL PIECES:		21
+PIECES ON THE GAME TABLE:	6
+Your opponent is playing the turn...
+
+OPPONENT BET ESCROW AMOUNT:	 100000
+YOUR BET ESCROW AMOUNT:		 100000
+Your Bet Escrow is still locked. 1850 blocks left!
+
+silverio@Flash:~/Scrivania/Tirocinio/algonim$ python3 algonim.py status YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA
+
+MATCH TOTAL PIECES:		21
+PIECES ON THE GAME TABLE:	5
+It's your turn! Play your best move!
+
+OPPONENT BET ESCROW AMOUNT:	 100000
+YOUR BET ESCROW AMOUNT:		 100000
+Your Bet Escrow is still locked. 1845 blocks left!
+
+
+silverio@Flash:~/Scrivania/Tirocinio/algonim$ python3 algonim.py play "month word black hawk member fatigue enrich disagree gather major toilet urge hamster dentist infant mesh gorilla laptop segment method tuna belt box abstract grit" 3
+
+Removing 3 pieces from the Game Table...
+Transaction ID:  22SG5A55JUQB6LKNGCT6FKDXNBGC3AJCOS4RSDE3YVND4OEKA4SQ
+Waiting for confirmation...
+Transaction 22SG5A55JUQB6LKNGCT6FKDXNBGC3AJCOS4RSDE3YVND4OEKA4SQ confirmed in round 3014.
+
+
+silverio@Flash:~/Scrivania/Tirocinio/algonim$ python3 algonim.py status YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA 
+
+MATCH TOTAL PIECES:		21
+PIECES ON THE GAME TABLE:	0
+The match is over!
+
+OPPONENT BET ESCROW AMOUNT:	 100000
+YOUR BET ESCROW AMOUNT:		 0

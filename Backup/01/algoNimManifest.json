@@ -1,0 +1,378 @@
+{
+    "xesExtensions" : [
+        {"name" : "Time", "prefix" : "time", "uri" : "http://www.xes-standard.org/time.xesext"},
+        {"name" : "Identity", "prefix" : "ident", "uri" : "https://www.data61.csiro.au/ident.xesext"},
+        {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"}
+    ],
+    "xesClassifiers" : [
+        
+    ],
+    "xesGlobals" : [
+        
+    ],
+    "accountMappings" : [
+        {   
+            "indexerFilters" : [
+                {"key" : "address", "val" : "LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU", "type" : "address"},
+                {"key" : "min_round", "val" : "17400", "type" : "int"},
+                {"key" : "max_round", "val" : "18500", "type" : "int"}
+            ],
+            "logMappings" : [
+                {
+                    "eventName" : "Generation of Piece Asset",
+                    "filters" : {
+                        "tx-type" : ["acfg"],
+                        "created-asset-index" : ["33"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Generation of Piece Asset", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "asset-config-transaction.params.total", "type" : "int" } },
+                            "assetID" : { "parameter" : { "key" : "created-asset-index", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }}
+                        }
+                    ]                
+                },
+                {
+                    "eventName" : "Generation of Turn Asset",
+                    "filters" : {
+                        "tx-type" : ["acfg"],
+                        "created-asset-index" : ["34"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Generation of Turn Asset", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "asset-config-transaction.params.total", "type" : "int" } },
+                            "assetID" : { "parameter" : { "key" : "created-asset-index", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }}
+                        }
+                    ]                
+                },
+                {
+                    "eventName" : "Sink Generation",
+                    "filters" : {
+                        "tx-type" : ["pay"],
+                        "payment-transaction.receiver" : ["5VXIOR4FNTVPCS5JIKDKAXDWU7XTN6OKOJMU37WTQXKCFOCTTS2QKCKDTI"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Sink Generation", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "payment-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } }
+                        }
+                    ]                
+                },
+                {
+                    "eventName" : "Table Generation",
+                    "filters" : {
+                        "tx-type" : ["pay"],
+                        "payment-transaction.receiver" : ["N6RIKM2YT6FCAEFF7M67QW45YFRI7LEO6Q3YNDIVWC425YHRZ66HPUWX5M"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Table Generation", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "payment-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } }
+                        }
+                    ]                
+                },
+                {
+                    "eventName" : "Pieces to Table",
+                    "filters" : {
+                        "tx-type" : ["axfer"],
+                        "asset-transfer-transaction.receiver" : ["N6RIKM2YT6FCAEFF7M67QW45YFRI7LEO6Q3YNDIVWC425YHRZ66HPUWX5M"],
+                        "asset-transfer-transaction.asset-id" : ["33"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Pieces to Table", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } }
+                        }
+                    ]                
+                },
+                {
+                    "eventName" : "Bet Escrow Player 1 Account generation",
+                    "filters" : {
+                        "tx-type" : ["pay"],
+                        "payment-transaction.receiver" : ["I72JIAGM4MK4BN6CZRASGSPCX5M4UER2DQWZWRDIHHD4KIIFYYX4DN5GME"],
+                        "id" : ["VBEWDNEF6WFTI7ICZTLZAXGCP4LZKBCIMI2AVCYHRJWGXXL6274Q"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Bet Escrow Player 1 Account generation", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "payment-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } }
+                        }
+                    ]                
+                },
+                {
+                    "eventName" : "Bet Escrow Player 2 Account generation",
+                    "filters" : {
+                        "tx-type" : ["pay"],
+                        "payment-transaction.receiver" : ["DNA5CNTKTUWEEG2GWWIA6F5WMABSNNV6MG2E5CEQENXB4ZDWW2NOMT4WYQ"],
+                        "id" : ["4FKCCZPNENGXPXMTNI23IXMWPJMGKWZL3L5ZZ7LBIL3CKVF2KXAA"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Bet Escrow Player 2 Account generation", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "payment-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } }
+                        }
+                    ]                
+                },
+                {
+                    "eventName" : "Bet Player 1",
+                    "filters" : {
+                        "tx-type" : ["pay"],
+                        "payment-transaction.receiver" : ["I72JIAGM4MK4BN6CZRASGSPCX5M4UER2DQWZWRDIHHD4KIIFYYX4DN5GME"],
+                        "id" : ["AKPFVHFMFM7TQI56MJQJLXT23APWZTVX7ZTL54B4PH5U2QJ5GPIQ"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Bet Player 1", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "payment-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "group" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ]                
+                },
+                {
+                    "eventName" : "Move Player 1",
+                    "filters" : {
+                        "tx-type" : ["axfer"],
+                        "asset-transfer-transaction.asset-id" : ["34"],
+                        "asset-transfer-transaction.receiver" : ["YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Move Player 1", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "group" : { "parameter" : { "key" : "group", "type" : "string" } },
+                            "group-offset" : { "parameter" : { "key" : "intra-round-offset", "type" : "int" } }
+                        }
+                    ]               
+                }
+            ]
+        },
+        {   
+            "indexerFilters" : [
+                {"key" : "address", "val" : "YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA", "type" : "address"},
+                {"key" : "min_round", "val" : "17400", "type" : "int"},
+                {"key" : "max_round", "val" : "18500", "type" : "int"}
+            ],
+            "logMappings" : [
+                {
+                    "eventName" : "Bet Player 2",
+                    "filters" : {
+                        "tx-type" : ["pay"],
+                        "payment-transaction.receiver" : ["DNA5CNTKTUWEEG2GWWIA6F5WMABSNNV6MG2E5CEQENXB4ZDWW2NOMT4WYQ"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Bet Player 2", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "payment-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "group" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ]                
+                },
+                {
+                    "eventName" : "Move Player 2",
+                    "filters" : {
+                        "tx-type" : ["axfer"],
+                        "asset-transfer-transaction.asset-id" : ["34"],
+                        "asset-transfer-transaction.receiver" : ["LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Move Player 2", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "group" : { "parameter" : { "key" : "group", "type" : "string" } },
+                            "group-offset" : { "parameter" : { "key" : "intra-round-offset", "type" : "int" } }
+                        }
+                    ]               
+                }
+            ]
+        },
+        {   
+            "indexerFilters" : [
+                {"key" : "address", "val" : "N6RIKM2YT6FCAEFF7M67QW45YFRI7LEO6Q3YNDIVWC425YHRZ66HPUWX5M", "type" : "address"},
+                {"key" : "min_round", "val" : "17400", "type" : "int"},
+                {"key" : "max_round", "val" : "18500", "type" : "int"}
+            ],
+            "logMappings" : [
+                {
+                    "eventName" : "Moved Pieces",
+                    "filters" : {
+                        "tx-type" : ["axfer"],
+                        "asset-transfer-transaction.asset-id" : ["33"],
+                        "asset-transfer-transaction.receiver" : ["5VXIOR4FNTVPCS5JIKDKAXDWU7XTN6OKOJMU37WTQXKCFOCTTS2QKCKDTI"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Moved Pieces", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "group" : { "parameter" : { "key" : "group", "type" : "string" } },
+                            "group-offset" : { "parameter" : { "key" : "intra-round-offset", "type" : "int" } }
+                        }
+                    ]                
+                }
+            ]
+        },
+        {   
+            "indexerFilters" : [
+                {"key" : "address", "val" : "5VXIOR4FNTVPCS5JIKDKAXDWU7XTN6OKOJMU37WTQXKCFOCTTS2QKCKDTI", "type" : "address"},
+                {"key" : "min_round", "val" : "17400", "type" : "int"},
+                {"key" : "max_round", "val" : "18500", "type" : "int"}
+            ],
+            "logMappings" : [
+                {
+                    "eventName" : "All Pieces to the Winner",
+                    "filters" : {
+                        "tx-type" : ["axfer"],
+                        "asset-transfer-transaction.asset-id" : ["33"],
+                        "asset-transfer-transaction.receiver" : ["LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU", "YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "All Pieces to the Winner", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "group" : { "parameter" : { "key" : "group", "type" : "string" } },
+                            "group-offset" : { "parameter" : { "key" : "intra-round-offset", "type" : "int" } }
+                        }
+                    ]                
+                }
+            ]
+        },
+        {   
+            "indexerFilters" : [
+                {"key" : "address", "val" : "I72JIAGM4MK4BN6CZRASGSPCX5M4UER2DQWZWRDIHHD4KIIFYYX4DN5GME", "type" : "address"},
+                {"key" : "min_round", "val" : "17400", "type" : "int"},
+                {"key" : "max_round", "val" : "18500", "type" : "int"}
+            ],
+            "logMappings" : [
+                {
+                    "eventName" : "Player 2 wins and gets paid from Escrow1",
+                    "filters" : {
+                        "tx-type" : ["pay"],
+                        "payment-transaction.receiver" : ["YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Player 2 wins and gets paid from Escrow1", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "payment-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "group" : { "parameter" : { "key" : "group", "type" : "string" } },
+                            "group-offset" : { "parameter" : { "key" : "intra-round-offset", "type" : "int" } }
+                        }
+                    ]                
+                }
+            ]
+        },
+        {   
+            "indexerFilters" : [
+                {"key" : "address", "val" : "DNA5CNTKTUWEEG2GWWIA6F5WMABSNNV6MG2E5CEQENXB4ZDWW2NOMT4WYQ", "type" : "address"},
+                {"key" : "min_round", "val" : "17400", "type" : "int"},
+                {"key" : "max_round", "val" : "18500", "type" : "int"}
+            ],
+            "logMappings" : [
+                {
+                    "eventName" : "Player 1 wins and gets paid from Escrow2",
+                    "filters" : {
+                        "tx-type" : ["pay"],
+                        "payment-transaction.receiver" : ["LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "1", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Player 1 wins and gets paid from Escrow 2", "type" : "string" } },
+                            "amount" : { "parameter" : { "key" : "payment-transaction.amount", "type" : "int" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
+                            "group" : { "parameter" : { "key" : "group", "type" : "string" } },
+                            "group-offset" : { "parameter" : { "key" : "intra-round-offset", "type" : "int" } }
+                        }
+                    ]                
+                }
+            ]
+        }
+    ]
+}

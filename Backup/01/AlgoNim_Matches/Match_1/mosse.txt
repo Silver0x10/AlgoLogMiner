@@ -1,0 +1,10 @@
+Pieces: 21
+m: 4
+
+1) Dealer: 4
+2) Opponent: 4
+3) Dealer: 3
+4) Opponent: 4
+5) Dealer: 1
+6) Opponent: 3
+7) Dealer: 2

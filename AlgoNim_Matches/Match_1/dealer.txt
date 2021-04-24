@@ -1,0 +1,180 @@
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 ./algonim.py setup "parrot build wasp talk desk steak install ball virtual panel win delay brain confirm mouse void industry smoke sign unit deliver flock final ability accuse" YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA 3
+                                                               
+      _       __                 ____  _____   _               
+     / \     [  |               |_   \|_   _| (_)              
+    / _ \     | |  .--./)  .--.   |   \ | |   __   _ .--..--.  
+   / ___ \    | | / /'`\;/ .'`\ \ | |\ \| |  [  | [ `.-. .-. | 
+ _/ /   \ \_  | | \ \._//| \__. |_| |_\   |_  | |  | | | | | | 
+|____| |____|[___].',__`  '.__.'|_____|\____|[___][___||__||__]
+                 ( ( __))                                      
+                                                       by cusma
+                                                               
+  Welcome to AlgoNim, the first crypto-mini-game on Algorand!  
+
+Dealer creating AlgoNim ASA Piece for this match...
+Transaction ID: 2C2JUFU7MA2ZJD7CVAIU6YYFBHX76W7EY56HU277B7Y4EVN5TEHA
+Waiting for confirmation...
+Transaction 2C2JUFU7MA2ZJD7CVAIU6YYFBHX76W7EY56HU277B7Y4EVN5TEHA confirmed in round 2684.
+AlgoNim ASA Piece ID: 3
+
+Dealer creating AlgoNim ASA Turn for this match...
+Transaction ID: 7A2KYF577DY4FP6WI4YEPKXC4EI3NDOB3WETMDJOFHDM5JV43GMQ
+Waiting for confirmation...
+Transaction 7A2KYF577DY4FP6WI4YEPKXC4EI3NDOB3WETMDJOFHDM5JV43GMQ confirmed in round 2686.
+AlgoNim ASA Turn ID: 4
+
+Dealer writing AlgoNim ASC1 Sink TEAL for this match...
+
+Initializing Sink Account...
+Transaction ID: 2VENX42353XP3LTGQF5V4V77YHNIDEBIYHF3TYOBXSFUTSI3YC5A
+Waiting for confirmation...
+Transaction 2VENX42353XP3LTGQF5V4V77YHNIDEBIYHF3TYOBXSFUTSI3YC5A confirmed in round 2688.
+
+Sink Account AlgoNim ASA Piece Opt-In...
+Transaction ID: 22WRNTOTJZQAW43VVHII4FYJTVRTNKJIPDEP52Y74NR7MSA4RQNA
+Waiting for confirmation...
+Transaction 22WRNTOTJZQAW43VVHII4FYJTVRTNKJIPDEP52Y74NR7MSA4RQNA confirmed in round 2690.
+
+Dealer writing AlgoNim ASC1 Game Table TEAL for this match...
+
+Initializing Game Table Account...
+Transaction ID: Z6XOG34HTNX3JLN5QZ6MK53DYANTKHMIAW3B26BOKV7YM6PPNVMA
+Waiting for confirmation...
+Transaction Z6XOG34HTNX3JLN5QZ6MK53DYANTKHMIAW3B26BOKV7YM6PPNVMA confirmed in round 2692.
+
+Dealer distributing ASA Pieces on the Game Table...
+Transaction ID:  RANO6FOBOOCNEUUE7F4MPILORH2CGYDS6OGKOD57K7SOWELB45MQ
+Waiting for confirmation...
+Transaction RANO6FOBOOCNEUUE7F4MPILORH2CGYDS6OGKOD57K7SOWELB45MQ confirmed in round 2694.
+
+Dealer writing AlgoNim ASC1 Bet Escrow TEAL for Palyer 1...
+AlgoNim Bet Escrows Expiry block: 4854
+
+Dealer writing AlgoNim ASC1 Bet Escrow TEAL for Palyer 2...
+AlgoNim Bet Escrows Expiry block: 4854
+
+Initializing Bet Escrow Accounts...
+Transaction ID: LKLM5S3N5ADF2TKATWV37V3TW6QILPGZ5YYO2NN3DXKQO63BHQBA
+Waiting for confirmation...
+Transaction LKLM5S3N5ADF2TKATWV37V3TW6QILPGZ5YYO2NN3DXKQO63BHQBA confirmed in round 2696.
+
+Transaction ID: VP3IDVDETXIPTENFGNJSRF27MNDL3QBG3KFMLFDJ4NEFQ74HDSXA
+Waiting for confirmation...
+Transaction VP3IDVDETXIPTENFGNJSRF27MNDL3QBG3KFMLFDJ4NEFQ74HDSXA confirmed in round 2698.
+                                
+              _       _         
+  /\/\   __ _| |_ ___| |__    _ 
+ /    \ / _` | __/ __| '_ \  (_)
+/ /\/\ \ (_| | || (__| | | |  _ 
+\/    \/\__,_|\__\___|_| |_| (_)
+                                
+MATCH DURATION:		 180.0 min
+PIECES ON GAME TABLE:	 21 
+
+RULES:
+1. Players on each turn must remove at least 1 ASA Piece
+2. Players on each turn must remove at most 4 ASA Piece
+3. Who removes the last ASA Piece form the Game Table wins the match!
+
+Player 1 - Dealer:	LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU
+Player 2 - Opponent:	YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA 
+
+AlgoNim ASA Pieces ID:	 3
+AlgoNim ASA Turn ID:	 4 
+
+AlgoNim Sink Account:			GAJNKNP55OKQJ3SYLTJWNL5Z5I6SF2X42LGKETLVPKMGLJGS2IXVCXR4CI
+AlgoNim Game Table Account:		GHQRSPYGH5SMN3H6UALOE4ULKT6LFMHPBQCUGGGNF25DBN375JIDOGPMTQ
+AlgoNim Bet Escrow Player 1 Account:	3JQAEQLMPVKDGDXEE3MOZIN2I5NCCT2UZXUGAYSYALZTJ6BMFOOHEJQOUY
+AlgoNim Bet Escrow Player 2 Account:	G2C7KX2XTKMXNCVLW2AOK7ETHP4VBOC2ANDQDAZIZ6KANN6YXG4KCVWB7A
+
+Send 'algonim.match' file to your opponent join the match!
+
+May the best win!
+
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ cat algonim.match 
+��dealer�:LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU�opponent�:YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA�asa_pieces_id�asa_pieces_max_remove�asa_turn_id�sink�:GAJNKNP55OKQJ3SYLTJWNL5Z5I6SF2X42LGKETLVPKMGLJGS2IXVCXR4CI�sink_lsig�0gaFsxN0CIAcBAAToBwMCFSYCIFjnNsFdTmg8bej4FXh68WwbsBuPLjsf4G2w9XSTNPCJIMJ7ImZQtiZh8qUOYy35C8Ag9LNUG4+9VGPatvF/uctKMgQiEjEWIxIQMRAkEhAxASUOEDERIQQSEDESIxIQMRUyAxIQMSAyAxIQMgQkEjEWIQUSEDEQJBIQMQElDhAxESEEEhAxEiEGEhAxFCgSEDEVMgMSEDEgMgMSEDIEJBIxFiEFEhAxECQSEDEBJQ4QMREhBBIQMRIhBhIQMRQpEhAxFTIDEhAxIDIDEhAREQ==�game_table�:GHQRSPYGH5SMN3H6UALOE4ULKT6LFMHPBQCUGGGNF25DBN375JIDOGPMTQ�game_table_lsig� gaFsxQGRAiAHAgAE6AcDFQEmAyBY5zbBXU5oPG3o+BV4evFsG7Abjy47H+BtsPV0kzTwiSDCeyJmULYmYfKlDmMt+QvAIPSzVBuPvVRj2rbxf7nLSiAwEtU1/euVBO5YXNNmr7nqPSLq/NLMok11ephlpNLSLzIEIhIxFiMSEDMAECQSEDMAASUOEDMAESEEEhAzABIjEhAzABUyAxIQMwAgMgMSEDIEIhIzARAkEhAzAQElDhAzAREhBBIQMwESIQUSEDMBACgSEDMBFTIDEhAzASAyAxIQEDIEIhIyBCQSETMAECQSEDMAASUOEDMAESQSEDMAEiEGEhAzAAAoEhAzABQpEhAzABUyAxIQMwAgMgMSEDIEIhIyBCQSETMAECQSEDMAASUOEDMAESQSEDMAEiEGEhAzAAApEhAzABQoEhAzABUyAxIQMwAgMgMSEBEyBCISMgQkEhExFiEGEhAzARAkEhAzAQElDhAzAREhBBIQMwESIQYPEDMBEiQOEDMBFCoSEDMBFTIDEhAzASAyAxIQEBE=�dealer_bet_escrow�:3JQAEQLMPVKDGDXEE3MOZIN2I5NCCT2UZXUGAYSYALZTJ6BMFOOHEJQOUY�dealer_bet_escrow_lsig�<gaFsxQGnAiAHBAHoBwMVAPYlJgQgwnsiZlC2JmHypQ5jLfkLwCD0s1Qbj71UY9q28X+5y0ogWOc2wV1OaDxt6PgVeHrxbBuwG48uOx/gbbD1dJM08IkgMeEZPwY/ZMbs/qAW4nKLVPyysO8MBUMYzS66MLd/6lAgMBLVNf3rlQTuWFzTZq+56j0i6vzSzKJNdXqYZaTS0i8yBCISQAAIMgQjEkAA0wAyBCISMwAQIhIQMwABJA4QMwARIhIQMwASIxIQMwAAKBIQMwAUKRIQMwAVMgMSEDMAIDIDEhAyBCISMwEQIhIQMwEBJA4QMwERJRIQMwEAKhIQMwEUKxIQMwEVMgMSEDMBIDIDEhAQMgQiEjMCECISEDMCASQOEDMCESUSEDMCACsSEDMCFCgSEDMCEiEEEhAzAhUyAxIQMwIgMgMSEBAyBCISMRYlEhAzAxAjEhAzAwEkDhAzAwcoEhAzAwghBRIQMwMJKBIQMwMgMgMSEBBCADAyBCMSMRYhBRIQMRAjEhAxASQOEDEHKRIQMQghBRIQMQkpEhAxAiEGDRAxIDIDEhAjIxIQ�opponent_bet_escrow�:G2C7KX2XTKMXNCVLW2AOK7ETHP4VBOC2ANDQDAZIZ6KANN6YXG4KCVWB7A�opponent_bet_escrow_lsig�<gaFsxQGnAiAHBAHoBwMVAPYlJgQgWOc2wV1OaDxt6PgVeHrxbBuwG48uOx/gbbD1dJM08IkgwnsiZlC2JmHypQ5jLfkLwCD0s1Qbj71UY9q28X+5y0ogMeEZPwY/ZMbs/qAW4nKLVPyysO8MBUMYzS66MLd/6lAgMBLVNf3rlQTuWFzTZq+56j0i6vzSzKJNdXqYZaTS0i8yBCISQAAIMgQjEkAA0wAyBCISMwAQIhIQMwABJA4QMwARIhIQMwASIxIQMwAAKBIQMwAUKRIQMwAVMgMSEDMAIDIDEhAyBCISMwEQIhIQMwEBJA4QMwERJRIQMwEAKhIQMwEUKxIQMwEVMgMSEDMBIDIDEhAQMgQiEjMCECISEDMCASQOEDMCESUSEDMCACsSEDMCFCgSEDMCEiEEEhAzAhUyAxIQMwIgMgMSEBAyBCISMRYlEhAzAxAjEhAzAwEkDhAzAwcoEhAzAwghBRIQMwMJKBIQMwMgMgMSEBBCADAyBCMSMRYhBRIQMRAjEhAxASQOEDEHKRIQMQghBRIQMQkpEhAxAiEGDRAxIDIDEhAjIxIQ�dealer_bet_stxn�TgqNzaWfEQHPrtRjS7csyxOKKf3v5A7fkLnFuokwb6P9qjkXiI335E9S6DnqoapnfLDbEua5aR7E+TkqVN7/Y7nZ3kC129wijdHhuiKNmZWXNA+iiZnbNCoqiZ2jEIOKrN3MHe4FuvDu7ZSxLvzZhxgCMbiQQGWACas8vSAX8o2dycMQgdXWQ64MsdxsDCwV+tVAycwhoUWHDxa3aT4dAnjDX96qibHbNDnKjcmN2xCDaYAJBbH1UMw7kJtjsobpHWiFPVM3oYGJYAvM0+CwrnKNzbmTEIFjnNsFdTmg8bej4FXh68WwbsBuPLjsf4G2w9XSTNPCJpHR5cGWjcGF5�opponent_bet_txn��iKNmZWXNA+iiZnbNCoqiZ2jEIOKrN3MHe4FuvDu7ZSxLvzZhxgCMbiQQGWACas8vSAX8o2dycMQgdXWQ64MsdxsDCwV+tVAycwhoUWHDxa3aT4dAnjDX96qibHbNDnKjcmN2xCA2hfVfV5qZdoqrtoDlfJM7+VC4WgNHAYMoz5QGt9i5uKNzbmTEIMJ7ImZQtiZh8qUOYy35C8Ag9LNUG4+9VGPatvF/uctKpHR5cGWjcGF5�microalgo_bet_amount�match_hours_timeout��dealer_bet_escrow_expiry���opponent_bet_escrow_expiry��
+ 
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 algonim.py status LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU
+
+MATCH TOTAL PIECES:		21
+PIECES ON THE GAME TABLE:	21
+It's your turn! Play your best move!
+
+OPPONENT BET ESCROW AMOUNT:	 100000
+YOUR BET ESCROW AMOUNT:		 100000
+Your Bet Escrow is still locked. 1898 blocks left!
+
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 algonim.py play "parrot build wasp talk desk steak install ball virtual panel win delay brain confirm mouse void industry smoke sign unit deliver flock final ability accuse" 4
+
+Removing 4 pieces from the Game Table...
+Transaction ID:  OTXNFX4F4DEJ3O53NVFFQU4IF6HK3XIKQO2YUTP2JO6YEDF5IUAQ
+Waiting for confirmation...
+Transaction OTXNFX4F4DEJ3O53NVFFQU4IF6HK3XIKQO2YUTP2JO6YEDF5IUAQ confirmed in round 2976.
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 algonim.py status LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU
+
+MATCH TOTAL PIECES:		21
+PIECES ON THE GAME TABLE:	17
+Your opponent is playing the turn...
+
+OPPONENT BET ESCROW AMOUNT:	 100000
+YOUR BET ESCROW AMOUNT:		 100000
+Your Bet Escrow is still locked. 1875 blocks left!
+
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 algonim.py status LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU
+
+MATCH TOTAL PIECES:		21
+PIECES ON THE GAME TABLE:	13
+It's your turn! Play your best move!
+
+OPPONENT BET ESCROW AMOUNT:	 100000
+YOUR BET ESCROW AMOUNT:		 100000
+Your Bet Escrow is still locked. 1865 blocks left!
+
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 algonim.py play "parrot build wasp talk desk steak install ball virtual panel win delay brain confirm mouse void industry smoke sign unit deliver flock final ability accuse" 3
+
+Removing 3 pieces from the Game Table...
+Transaction ID:  HVU2JLAUXLWBQUARWJ52HCWCJVFZPB75PQRN72FGMQVHM4O3P5WQ
+Waiting for confirmation...
+Transaction HVU2JLAUXLWBQUARWJ52HCWCJVFZPB75PQRN72FGMQVHM4O3P5WQ confirmed in round 2993.
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 algonim.py play "parrot build wasp talk desk steak install ball virtual panel win delay brain confirm mouse void industry smoke sign unit deliver flock final ability accuse" 1
+
+Removing 1 pieces from the Game Table...
+Transaction ID:  C35HBY4W2RBUUMSN6VJIVQSZSLR5SZTKJMLBDDIE5U4YG4A672YQ
+Waiting for confirmation...
+Transaction C35HBY4W2RBUUMSN6VJIVQSZSLR5SZTKJMLBDDIE5U4YG4A672YQ confirmed in round 3008.
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 algonim.py status LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU
+
+MATCH TOTAL PIECES:		21
+PIECES ON THE GAME TABLE:	2
+It's your turn! Play your best move!
+
+OPPONENT BET ESCROW AMOUNT:	 100000
+YOUR BET ESCROW AMOUNT:		 100000
+Your Bet Escrow is still locked. 1838 blocks left!
+
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 algonim.py play "parrot build wasp talk desk steak install ball virtual panel win delay brain confirm mouse void industry smoke sign unit deliver flock final ability accuse" 2
+
+I WON !!! Arrivederci YJ5SEZSQWYTGD4VFBZRS36ILYAQPJM2UDOH32VDD3K3PC75ZZNFPVNG7ZA
+Transaction ID:  X4L6MXYDJAK73PQCUN4X7J76K62R7Y62ZSEEH24GAUHMF2PDJ64A
+Waiting for confirmation...
+Transaction X4L6MXYDJAK73PQCUN4X7J76K62R7Y62ZSEEH24GAUHMF2PDJ64A confirmed in round 3019.
+
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 algonim.py status LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU
+
+MATCH TOTAL PIECES:		21
+PIECES ON THE GAME TABLE:	0
+The match is over!
+
+OPPONENT BET ESCROW AMOUNT:	 0
+YOUR BET ESCROW AMOUNT:		 100000
+Your Bet Escrow is still locked. 1812 blocks left!
+
+silverio@Flash:/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/algonim$ python3 algonim.py status LDTTNQK5JZUDY3PI7AKXQ6XRNQN3AG4PFY5R7YDNWD2XJEZU6CE2DLJ4SU
+
+MATCH TOTAL PIECES:		21
+PIECES ON THE GAME TABLE:	0
+The match is over!
+
+OPPONENT BET ESCROW AMOUNT:	 0
+YOUR BET ESCROW AMOUNT:		 100000
+Your Bet Escrow is still locked. 1806 blocks left!
