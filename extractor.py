@@ -9,7 +9,6 @@ from opyenxes.data_out.XesXmlSerializer import XesXmlSerializer
 # from opyenxes.extension.XExtension import XExtension
 from opyenxes.extension.XExtensionManager import XExtensionManager, XTimeExtension, XConceptExtension, XIdentityExtension
 from os import system
-import string
 
 def attributeFactory(key, value, type):
     attribute = None
@@ -77,7 +76,6 @@ def getTransactions(indexer, indexerFilters):
     #     with open("./transactions/"+ txnsFileName +".json", "w") as f:
     #         json.dump(transactions, f, indent=2, sort_keys=True)
     return transactions    
-
 
 ###
 def extractFromDict(dict, position):
@@ -243,11 +241,10 @@ def extract(indexer, manifestPath, xesFilePath):
     with open(xesFilePath, "w") as file:
         XesXmlSerializer().serialize(log, file)
 
+
     # xesFile = open(xesFilePath, "w")
     # xesFile.write("""<?xml version='1.0' encoding='UTF-8'?><log></log>""")
     # xesFile.close()
     # log = xes_importer.apply(xesFilePath)
     # log = pm4py.read_xes(xesFilePath)
     # print(type(log))
-
-
