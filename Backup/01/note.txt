@@ -1,5 +1,0 @@
-Estrazione in base al manifest, ma ancora molto acerba
-
-Documentazione manifest mancante
-
-Estrazione ancora troppo specifica, seppur generalizzata rispetto alla versione precedente
