@@ -1,7 +1,6 @@
 {
     "xesExtensions" : [
         {"name" : "Time", "prefix" : "time", "uri" : "http://www.xes-standard.org/time.xesext"},
-        {"name" : "Identity", "prefix" : "ident", "uri" : "https://www.data61.csiro.au/ident.xesext"},
         {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"}
     ],
     "xesClassifiers" : [

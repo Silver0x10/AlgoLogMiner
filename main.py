@@ -1,8 +1,12 @@
+#!/usr/bin/python3
+
+from os import MFD_ALLOW_SEALING
 from algosdk.v2client import algod, indexer
 import json
 from extractor import extract
-from sys import argv
-from os import system
+# from sys import argv
+import sys, getopt
+# from os import system
 
 def connectToNode(algod_address, algod_token, verbose=False):
     # create an algod client
@@ -38,12 +42,43 @@ def test(myIndexer):
             nexttoken = response["next-token"]
             print(json.dumps(response, indent=2, sort_keys=True))
 
-def main():
+def main(argv):
+    indexer_token=""
+    indexer_address="http://localhost:8980"
     # algod_address = "http://localhost:4001" # see with 'cat $ALGORAND_DATA/algod.net' localhost:4001
     # algod_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" # see with 'cat $ALGORAND_DATA/algod.token'
+    manifestPath = ""
+    xesFilePath = "extractedEventLog.xes"
+    
+    try:
+        manifestPath = argv[0] #"./algoNimManifest.json"
+    except:
+        print("Missing json manifest!")
+        sys.exit(1)
+    if(not manifestPath.lower().endswith(('.json'))):
+        print("The manifest must be a json")
+        sys.exit(1)
+    
+    try:
+        opts, args = getopt.getopt(argv,"ho:a:t:",["output=", "indexerAddress=", "indexerToken="])
+    except getopt.GetoptError:
+        print('main.py <manifestPath> [-o <outputFilePath>] [-a <indexerAddress>] [-t <indexerToken>]')
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if( opt == '-h' ):
+            print('main.py <manifestPath> [-o <outputFilePath>] [-a <indexerAddress>] [-t <indexerToken>]')
+            sys.exit()
+        elif( opt in ("-o", "--output") ):
+            xesFilePath = arg if arg.lower().endswith(('.xes')) else arg + ".xes"
+        elif( opt in ("-a", "--indexerAddress") ):
+            indexer_address = arg
+        elif( opt in ("-t", "--indexerToken") ):
+            indexer_token = arg
+
     # algod_client = connectToNode(algod_address, algod_token)
 
-    theIndexer = indexer.IndexerClient(indexer_token="", indexer_address="http://localhost:8980")
+    theIndexer = indexer.IndexerClient(indexer_token, indexer_address)
     
     # response = theIndexer.search_transactions(address='PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU', )
     # print(json.dumps(response, indent=2, sort_keys=True))
@@ -52,9 +87,10 @@ def main():
 
     # theIndexer.search_transactions(txn_type=)
 
-    manifestPath = argv[1] #"./algoNimManifest.json"
-    extract(theIndexer, manifestPath)
 
-# system("mkdir ./transactions")
-# system("rm ./transactions/*")
-main()
+    extract(theIndexer, manifestPath, xesFilePath)
+    sys.exit(0)
+    
+
+if __name__ == "__main__":
+   main(sys.argv[1:])

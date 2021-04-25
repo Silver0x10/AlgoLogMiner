@@ -4,11 +4,12 @@
         {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"},
         {"name" : "Identity", "prefix" : "identity", "uri" : "http://www.xes-standard.org/identity.xesext"}
     ],
-    "xesClassifiers" : [
-        
-    ],
     "xesGlobals" : [
-        
+        {"key" : "concept:name", "type" : "string", "value" : "Default", "scope" : "event"},
+        {"key" : "idAttrType", "type" : "int", "value" : "-1", "scope" : "trace"}
+    ],
+    "xesClassifiers" : [
+        {"name" : "Activity", "keys" : "eventName", "scope" : "event"}
     ],
     "switches" : {
         "eventNames" : {
@@ -31,7 +32,7 @@
                 [ 
                     {"key" : "address", "val" : "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU", "type" : "address"},
                     {"key" : "min_round", "val" : "59400", "type" : "int"},
-                    {"key" : "max_round", "val" : "59600", "type" : "int"} 
+                    {"key" : "max_round", "val" : "78561", "type" : "int"} 
                 ]
             ],
             "logMappings" : [

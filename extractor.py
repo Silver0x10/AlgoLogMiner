@@ -11,19 +11,48 @@ from opyenxes.extension.XExtensionManager import XExtensionManager, XTimeExtensi
 from os import system
 import string
 
+def attributeFactory(key, value, type):
+    attribute = None
+    if(type in ["bool", "boolean"]):
+        if(value.lower() in ["True", "true"]): value = True
+        elif(value.lower() in ["False", "false"]): value = False
+        else: value = None
+        attribute = XFactory.create_attribute_boolean(key, value)
+    elif(type == "float"):
+        attribute = XFactory.create_attribute_continuous(key, float(value))
+    elif(type == "int"):
+        attribute = XFactory.create_attribute_discrete(key, int(value))
+    elif(type == "string"):
+        attribute = XFactory.create_attribute_literal(key, value)
+    elif(type == "date"):
+        attributeValue = datetime.utcfromtimestamp(float(value))
+        attribute = XFactory.create_attribute_timestamp(key, attributeValue)
+    else:
+        print('Not supported attribute type: "' + type + '"')
+        sys.exit(1)
+    # Not yet implemented: map, id, list, container
+
+    return attribute
+
 def setExtension(log, extList):
     for ext in extList:
         if(ext["name"] == "Time"): log.get_extensions().add(XTimeExtension())
         elif(ext["name"] == "Identity"): log.get_extensions().add(XIdentityExtension())
         elif(ext["name"] == "Concept"): log.get_extensions().add(XConceptExtension())
 
-def setClassifiers(log, clsList):
-    return
+def setGlobals(log, globalAttributes):
+    logAttrList = None
+    for element in globalAttributes:
+        if(element["scope"] == "event"):
+            logAttrList = log.get_global_event_attributes()
+        elif(element["scope"] == "trace"):
+            logAttrList = log.get_global_trace_attributes()
+        logAttrList.append(attributeFactory(element["key"], element["value"], element["type"]))
 
-def setGlobals(log, glbList):
-    return 
+def setClassifiers(log, clsList): # ToDo
+    log.get_classifiers()
 
-def getTransactions(indexer, indexerFilters, genTxsJson=True):
+def getTransactions(indexer, indexerFilters):
     searchString = "indexer.search_transactions("
     for filter in indexerFilters:
         if(filter["type"] == "address" or filter["type"] == "string"):
@@ -45,13 +74,9 @@ def getTransactions(indexer, indexerFilters, genTxsJson=True):
             nexttoken = response["next-token"]
 
     # if(genTxsJson):
-    #     with open("./transactions/txs.json", "w") as f:
+    #     with open("./transactions/"+ txnsFileName +".json", "w") as f:
     #         json.dump(transactions, f, indent=2, sort_keys=True)
     return transactions    
-
-
-# def jsonContains(position, jsonArray):
-    # return False
 
 
 ###
@@ -134,15 +159,8 @@ def setEvent(txn, eventMapping, trace, switches):
             else: 
                 ok = False
                 break
-
-        if(attributeType == "string"):
-            event.get_attributes()[attributeKey] = XFactory.create_attribute_literal(attributeKey, attributeValue)
-        elif(attributeType == "int"):
-            event.get_attributes()[attributeKey] = XFactory.create_attribute_discrete(attributeKey, attributeValue)
-        elif(attributeType == "date"):
-            attributeValue = datetime.utcfromtimestamp(float(attributeValue))
-            event.get_attributes()[attributeKey] = XFactory.create_attribute_timestamp(attributeKey, attributeValue)
-        # event.get_attributes()[attributeKey] = XFactory.create_attribute_literal(attributeKey, attributeValue)
+       
+        event.get_attributes()[attributeKey] = attributeFactory(attributeKey, attributeValue, attributeType)
     # if(ok): trace.append(event)
     if(ok): trace.insert_ordered(event)
 
@@ -153,7 +171,7 @@ def setEvent(txn, eventMapping, trace, switches):
 #             # ToDo
 #             pass
 
-def setTraces(transactions, traces, traceMap, eventMappings, switches):
+def setTraces(transactions, traces, traceMap, eventMappings, switches): # ToDo: Finora funziona solo con l'id
     idAttrKey = "identifier:id"
     idAttrType = None
     idAttrValue = None
@@ -176,13 +194,7 @@ def setTraces(transactions, traces, traceMap, eventMappings, switches):
                 trace = traces[idAttrValue]
         except:
             trace = XFactory.create_trace()
-            if(idAttrType == "int"):
-                trace.get_attributes()[idAttrKey] = XFactory.create_attribute_discrete(idAttrKey, idAttrValue)
-            elif(idAttrType == "string"):
-                trace.get_attributes()[idAttrKey] = XFactory.create_attribute_literal(idAttrKey, attributeValue)
-            elif(idAttrType == "date"):
-                attributeValue = datetime.utcfromtimestamp(float(attributeValue))
-                trace.get_attributes()[idAttrKey] = XFactory.create_attribute_timestamp(idAttrKey, attributeValue)
+            trace.get_attributes()[idAttrKey] = attributeFactory(idAttrKey, idAttrValue, idAttrType)
             traces[idAttrValue] = trace
         
         for eventMap in eventMappings:
@@ -202,8 +214,7 @@ def mapLog(log, mappings, indexer, switches):
                 transactions.append(txn)
             
         for logMap in map["logMappings"]:
-            usefulTransactions = filterTransactions(transactions, logMap["singleTxnFilters"]) # da sistemare
-            # usefulTransactions = transactions
+            usefulTransactions = filterTransactions(transactions, logMap["singleTxnFilters"])
 
             for traceMap in logMap["traceMappings"]:
                 setTraces(usefulTransactions, traces, traceMap, logMap["eventMappings"], switches)
@@ -212,9 +223,8 @@ def mapLog(log, mappings, indexer, switches):
         log.append(traces[traceId])
     # log.append(defaultTrace)
 
-def extract(indexer, manifestPath):
+def extract(indexer, manifestPath, xesFilePath):
     manifest = json.load(open(manifestPath))
-    xesFilePath = "extractedEventLog.xes"
 
     log = XFactory.create_log()
 
@@ -229,8 +239,6 @@ def extract(indexer, manifestPath):
         mapLog(log, manifest["mappings"], indexer, switches)
     except:
         print("Missing mappings!")
-
-    #  print(log.get_extensions().add(XTimeExtension()))
 
     with open(xesFilePath, "w") as file:
         XesXmlSerializer().serialize(log, file)
