@@ -117,90 +117,92 @@ def filterTransactions(transactions, txnFilters):
         if(ok): filteredTxs.append(txn)
     return filteredTxs
 
+
+def getAttributeData(transaction, attributeKey, mapping, switches):
+    attributeValue = ""
+    attributeType = ""
+    if("static" in mapping[attributeKey]):
+        attributeType = mapping[attributeKey]["static"]["type"]
+        attributeValue = mapping[attributeKey]["static"]["value"]
+    elif("parameter" in mapping[attributeKey]):
+        attributeType = mapping[attributeKey]["parameter"]["type"]
+        valuePosition = mapping[attributeKey]["parameter"]["key"]
+        attributeValue = extractFromTransaction(transaction, valuePosition)
+        if(attributeValue == None):
+            return None
+    elif("selector" in mapping[attributeKey]):
+        attributeType = mapping[attributeKey]["selector"]["type"]
+        position = mapping[attributeKey]["selector"]["key"]
+        txnValue = extractFromTransaction(transaction, position)
+        if(txnValue == None): 
+            return None
+        case = mapping[attributeKey]["selector"]["value"]
+        switch = switches[mapping[attributeKey]["selector"]["switch"]]
+        if(case == txnValue and case in switch):
+            attributeValue = switch[case]
+        else: 
+            return None
+    elif("switch" in mapping[attributeKey]):
+        attributeType = mapping[attributeKey]["switch"]["type"]
+        position = mapping[attributeKey]["switch"]["key"]
+        txnValue = extractFromTransaction(transaction, position)
+        if(txnValue == None): 
+            return None
+        switch = switches[mapping[attributeKey]["switch"]["switch"]]
+        if(txnValue in switch):
+            attributeValue = switch[txnValue]
+        else: 
+            return None
+    return (attributeValue, attributeType)
+
 def setEvent(txn, eventMapping, trace, switches):
     event =XFactory.create_event()
     ok = True
+
     for attributeKey in eventMapping:
-        attributeValue = ""
-        attributeType = ""
-        if("static" in eventMapping[attributeKey]):
-            attributeType = eventMapping[attributeKey]["static"]["type"]
-            attributeValue = eventMapping[attributeKey]["static"]["value"]
-        elif("parameter" in eventMapping[attributeKey]):
-            attributeType = eventMapping[attributeKey]["parameter"]["type"]
-            valuePosition = eventMapping[attributeKey]["parameter"]["key"]
-            attributeValue = extractFromTransaction(txn, valuePosition)
-            if(attributeValue == None): continue
-        elif("selector" in eventMapping[attributeKey]):
-            attributeType = eventMapping[attributeKey]["selector"]["type"]
-            position = eventMapping[attributeKey]["selector"]["key"]
-            txnValue = extractFromTransaction(txn, position)
-            if(txnValue == None): 
-                ok = False
-                break
-            case = eventMapping[attributeKey]["selector"]["value"]
-            switch = switches[eventMapping[attributeKey]["selector"]["switch"]]
-            if(case == txnValue and case in switch):
-                attributeValue = switch[case]
-            else: 
-                ok = False
-                break
-        elif("switch" in eventMapping[attributeKey]):
-            attributeType = eventMapping[attributeKey]["switch"]["type"]
-            position = eventMapping[attributeKey]["switch"]["key"]
-            txnValue = extractFromTransaction(txn, position)
-            if(txnValue == None): 
-                ok = False
-                break
-            switch = switches[eventMapping[attributeKey]["switch"]["switch"]]
-            if(txnValue in switch):
-                attributeValue = switch[txnValue]
-            else: 
-                ok = False
-                break
-       
-        event.get_attributes()[attributeKey] = attributeFactory(attributeKey, attributeValue, attributeType)
+        attributeData = getAttributeData(txn, attributeKey, eventMapping, switches)
+        if(attributeData != None):
+            event.get_attributes()[attributeKey] = attributeFactory(attributeKey, attributeData[0], attributeData[1])
+        else: # Modificare qui per rendere non vincolante l'assenza di un attributo 
+            ok = False
+            break
     
-    if(ok): trace.insert_ordered(event)
+    if(ok and len(event.get_attributes()) != 0): trace.insert_ordered(event)
 
+def setTrace(idAttrKey, idAttrValue, idAttrType, transaction, traceMap, switches):
+    trace = XFactory.create_trace()
+    trace.get_attributes()[idAttrKey] = attributeFactory(idAttrKey, idAttrValue, idAttrType)
+    for attributeKey in traceMap:
+        if(attributeKey != "identifier:id"):
+            attributeData = getAttributeData(transaction, attributeKey, traceMap, switches)
+            if(attributeData != None):
+                attributeValue = attributeData[0]
+                attributeType = attributeData[1]
+                trace.get_attributes()[attributeKey] = attributeFactory(attributeKey, attributeValue, attributeType)
+    return trace
 
-# def setTrace(transaction, trace, traceMap, eventMapping):
-#     for attributeKey in traceMap:
-#         if(attributeKey != "identifier:id"):
-#             # ToDo
-#             pass
-
-def setTraces(transactions, traces, traceMap, eventMappings, switches): # ToDo: Finora funziona solo con l'id
+def setTraces(transactions, traces, traceMap, eventMappings, switches):
     idAttrKey = "identifier:id"
-    idAttrType = None
-    idAttrValue = None
-    idAttrPosition = None
-    trace = None
-
-    if("static" in traceMap[idAttrKey]):
-        idAttrType = traceMap[idAttrKey]["static"]["type"]
-        idAttrValue = traceMap[idAttrKey]["static"]["value"]
-
-    elif("parameter" in traceMap[idAttrKey]):
-        idAttrType = traceMap[idAttrKey]["parameter"]["type"]
-        idAttrPosition = traceMap[idAttrKey]["parameter"]["key"]
 
     for txn in transactions:
-        if("parameter" in traceMap[idAttrKey]): idAttrValue = extractFromTransaction(txn, idAttrPosition)
-        
+        idAttrValue, idAttrType = getAttributeData(txn, idAttrKey, traceMap, switches)
+
         try:
             if(idAttrValue != None):
                 trace = traces[idAttrValue]
+            # else: # Ha senso mettere la traccia di default ?
+            #     try:
+            #         trace = traces["default"]
+            #     except:
+            #         trace = defaultTrace = XFactory.create_trace()
+            #         trace.get_attributes()[idAttrKey] = attributeFactory(idAttrKey, "default", "string")
+            #         traces["default"] = trace
         except:
-            trace = XFactory.create_trace()
-            trace.get_attributes()[idAttrKey] = attributeFactory(idAttrKey, idAttrValue, idAttrType)
+            trace = setTrace(idAttrKey, idAttrValue, idAttrType, txn, traceMap, switches)
             traces[idAttrValue] = trace
         
         for eventMap in eventMappings:
             setEvent(txn, eventMap, trace, switches)
-
-def sortEventsByTimestamp(trace):
-    print(type(trace))
 
 def mapLog(log, mappings, indexer, switches):
     # defaultTrace = XFactory.create_trace()

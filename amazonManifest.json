@@ -45,7 +45,8 @@
                     },
                     "traceMappings" : [
                         {
-                            "identifier:id" : { "parameter" : { "key" : "note.trace-id", "type" : "int" } }
+                            "identifier:id" : { "parameter" : { "key" : "note.trace-id", "type" : "int" } },
+                            "time:firstEvent" : { "parameter" : { "key" : "round-time", "type" : "date" } }
                         }
                     ],
                     "eventMappings" : [
