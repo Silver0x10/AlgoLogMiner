@@ -1,116 +1,45 @@
-da aggiornare
 {
     "xesExtensions" : [
-        {"name" : "Time", "prefix" : "time", "uri" : "http://www.xes-standard.org/time.xesext"},
-        {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"}
-    ],
-    "xesClassifiers" : [
-        
+        {"name" : <Extension name>, "prefix" : <Extension prefix>, "uri" : <Extension uri>}
     ],
     "xesGlobals" : [
-        
+        {"key" : <Attribute name>, "type" : <Attribute type>, "value" : <Attribute default value>, "scope" : <trace or event>}
+    ],
+    "xesClassifiers" : [
+        {"name" : <Classifier name>, "keys" : [ <Classifier keys> ]}
     ],
     "switches" : {
-        "eventNames" : {
-            "Browse Products on Amazon" : "Browse Products on Amazon",
-            "Add Item to Cart" : "Add Item to Cart",
-            "Pay Order" : "Pay Order",
-            "Take Payment" : "Take Payment",
-            "Pick Items" : "Pick Items",
-            "Place in Bin" : "Place in Bin",
-            "Receive and Package Items" : "Receive and Package Items",
-            "Send to Carrier Dock" : "Send to Carrier Dock",
-            "Load Truck" : "Load Truck",
-            "Deliver Items" : "Deliver Items",
-            "Receive Items" : "Receive Items"
+        <Switch identifier name> : {
+            <Case> : <Mapped value>
         }
     },
     "mappings" : [
         {   
             "indexerFilters" : [
                 [ 
-                    {"key" : "address", "val" : "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU", "type" : "address"},
-                    {"key" : "min_round", "val" : "59400", "type" : "int"},
-                    {"key" : "max_round", "val" : "59470", "type" : "int"} 
+                    {"key" : <Indexer filter name>, "val" : <Indexer filter argument>, "type" : <Indexer filter argument type>}
                 ]
             ],
             "logMappings" : [
                 {
-                    "mappingName" : "",
+                    "mappingName" : <Mapping name>,
                     "singleTxnFilters" : {
-                        "tx-type" : ["pay"]
+                        <Transaction position*> : [ <Transaction field value> ]
                     },
-                    "traceMappings" : [
+                    "traceMappings" : [ ###
                         {
                             "identifier:id" : { "parameter" : { "key" : "note.trace-id", "type" : "int" } }
                         }
                     ],
                     "eventMappings" : [
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "Browse Products on Amazon", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } }
-                        },
-                        {
-                            "concept:name" : { "static" : { "value" : "Add Item to Cart", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
-                        },
-                        {
-                            "concept:name" : { "static" : { "value" : "Pay Order", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } },
-                            "attempt-num" : { "parameter" : { "key" : "note.attempt-num", "type" : "int" } }
-                        },
-                        {
-                            "concept:name" : { "static" : { "value" : "Take Payment", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "accepted" : { "parameter" : { "key" : "note.accepted", "type" : "string" } }
-                        },
-                        {
-                            "concept:name" : { "static" : { "value" : "Pick Items", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
-                        },
-                        {
-                            "concept:name" : { "static" : { "value" : "Place in Bin", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
-                        },
-                        {
-                            "concept:name" : { "static" : { "value" : "Receive and Package Items", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
-                        },
-                        {
-                            "concept:name" : { "static" : { "value" : "Send to Carrier Dock", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
-                        },
-                        {
-                            "concept:name" : { "static" : { "value" : "Load Truck", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
-                        },
-                        {
-                            "concept:name" : { "static" : { "value" : "Deliver Items", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
-                        },
-                        {
-                            "concept:name" : { "static" : { "value" : "Receive Items", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            <Event attribute**> : { "static" : { "value" : <Attribute value>, "type" : <Attribute type> } }
+                            and/or
+                            <Event attribute**> : { "parameter" : { "key" : <Position in the transaction where to find the value*>, "type" : <Attribute type> } }
+                            and/or
+                            <Event attribute**> : { "selector" : { "switch" : <Switch identifier name>, "value" : <Value (present in the switch) for which there is a match>, "key" : <Position in the transaction where to find the value to check*>, "type" : <Attribute type> } }
+                            and/or
+                            <Event attribute**> : { "switch" : { "switch" : <Switch identifier name>, "key" : <Position in the transaction where to find the value to map*>, "type" : <Attribute type> } }
                         }
                     ]                
                 }
@@ -118,3 +47,6 @@ da aggiornare
         }
     ]
 }
+ 
+* Use "." for enter in nested position
+**  preceded by his extension (if present), separated by ":"

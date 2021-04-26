@@ -3,6 +3,8 @@ from base64 import b64decode
 from datetime import datetime
 import json
 import sys
+from opyenxes.classification.XEventAttributeClassifier import XEventAttributeClassifier
+from opyenxes.classification.XEventNameClassifier import XEventNameClassifier
 from opyenxes.factory.XFactory import XFactory
 # from opyenxes.id.XIDFactory import XIDFactory
 from opyenxes.data_out.XesXmlSerializer import XesXmlSerializer
@@ -30,7 +32,6 @@ def attributeFactory(key, value, type):
         print('Not supported attribute type: "' + type + '"')
         sys.exit(1)
     # Not yet implemented: map, id, list, container
-
     return attribute
 
 def setExtension(log, extList):
@@ -48,8 +49,9 @@ def setGlobals(log, globalAttributes):
             logAttrList = log.get_global_trace_attributes()
         logAttrList.append(attributeFactory(element["key"], element["value"], element["type"]))
 
-def setClassifiers(log, clsList): # ToDo
-    log.get_classifiers()
+def setClassifiers(log, classifierList):
+    for classifier in classifierList:
+        log.get_classifiers().append(XEventAttributeClassifier(classifier["name"], classifier["keys"]))
 
 def getTransactions(indexer, indexerFilters):
     searchString = "indexer.search_transactions("
@@ -64,7 +66,6 @@ def getTransactions(indexer, indexerFilters):
     nexttoken = ""
     numtx = 1
     while (numtx > 0):
-        # response = indexer.search_transactions(min_round=minRound, max_round=maxRound, next_page=nexttoken)
         searchString = searchString[:searchString.find("next_page=")] + "next_page='" + nexttoken + "')"
         response = eval(searchString)
         numtx = len(response["transactions"])
@@ -151,7 +152,7 @@ def setEvent(txn, eventMapping, trace, switches):
             if(txnValue == None): 
                 ok = False
                 break
-            switch = switches[eventMapping[attributeKey]["selector"]["switch"]]
+            switch = switches[eventMapping[attributeKey]["switch"]["switch"]]
             if(txnValue in switch):
                 attributeValue = switch[txnValue]
             else: 
@@ -159,7 +160,7 @@ def setEvent(txn, eventMapping, trace, switches):
                 break
        
         event.get_attributes()[attributeKey] = attributeFactory(attributeKey, attributeValue, attributeType)
-    # if(ok): trace.append(event)
+    
     if(ok): trace.insert_ordered(event)
 
 
@@ -213,7 +214,7 @@ def mapLog(log, mappings, indexer, switches):
             
         for logMap in map["logMappings"]:
             usefulTransactions = filterTransactions(transactions, logMap["singleTxnFilters"])
-
+            usefulTransactions.reverse()
             for traceMap in logMap["traceMappings"]:
                 setTraces(usefulTransactions, traces, traceMap, logMap["eventMappings"], switches)
 
@@ -234,9 +235,10 @@ def extract(indexer, manifestPath, xesFilePath):
         elif(key == "switches"): switches = manifest[key]
     
     try:
-        mapLog(log, manifest["mappings"], indexer, switches)
+        mappings = manifest["mappings"]
     except:
-        print("Missing mappings!")
+        print("Missing mappings in the manifest!")
+    mapLog(log, mappings, indexer, switches)
 
     with open(xesFilePath, "w") as file:
         XesXmlSerializer().serialize(log, file)

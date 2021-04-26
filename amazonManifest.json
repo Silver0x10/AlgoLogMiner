@@ -5,11 +5,13 @@
         {"name" : "Identity", "prefix" : "identity", "uri" : "http://www.xes-standard.org/identity.xesext"}
     ],
     "xesGlobals" : [
+        {"key" : "identifier:id", "type" : "int", "value" : "-1", "scope" : "trace"},
         {"key" : "concept:name", "type" : "string", "value" : "Default", "scope" : "event"},
-        {"key" : "idAttrType", "type" : "int", "value" : "-1", "scope" : "trace"}
+        {"key" : "time:timestamp", "type" : "date", "value" : "0", "scope" : "event"}
     ],
     "xesClassifiers" : [
-        {"name" : "Activity", "keys" : "eventName", "scope" : "event"}
+        {"name" : "Event name", "keys" : [ "concept:name" ]},
+        {"name" : "Event timestamp", "keys" : [ "time:timestamp" ]}
     ],
     "switches" : {
         "eventNames" : {
