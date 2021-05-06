@@ -133,7 +133,7 @@ def getAttributeData(transaction, attributeKey, mapping, switches):
     elif("selector" in mapping[attributeKey]):
         attributeType = mapping[attributeKey]["selector"]["type"]
         position = mapping[attributeKey]["selector"]["key"]
-        txnValue = extractFromTransaction(transaction, position)
+        txnValue = str(extractFromTransaction(transaction, position))
         if(txnValue == None): 
             return None
         case = mapping[attributeKey]["selector"]["value"]
@@ -145,7 +145,7 @@ def getAttributeData(transaction, attributeKey, mapping, switches):
     elif("switch" in mapping[attributeKey]):
         attributeType = mapping[attributeKey]["switch"]["type"]
         position = mapping[attributeKey]["switch"]["key"]
-        txnValue = extractFromTransaction(transaction, position)
+        txnValue = str(extractFromTransaction(transaction, position))
         if(txnValue == None): 
             return None
         switch = switches[mapping[attributeKey]["switch"]["switch"]]
@@ -190,13 +190,6 @@ def setTraces(transactions, traces, traceMap, eventMappings, switches):
         try:
             if(idAttrValue != None):
                 trace = traces[idAttrValue]
-            # else: # Ha senso mettere la traccia di default ?
-            #     try:
-            #         trace = traces["default"]
-            #     except:
-            #         trace = defaultTrace = XFactory.create_trace()
-            #         trace.get_attributes()[idAttrKey] = attributeFactory(idAttrKey, "default", "string")
-            #         traces["default"] = trace
         except:
             trace = setTrace(idAttrKey, idAttrValue, idAttrType, txn, traceMap, switches)
             traces[idAttrValue] = trace
@@ -205,7 +198,6 @@ def setTraces(transactions, traces, traceMap, eventMappings, switches):
             setEvent(txn, eventMap, trace, switches)
 
 def mapLog(log, mappings, indexer, switches):
-    # defaultTrace = XFactory.create_trace()
     traces = {}
 
     for map in mappings:
@@ -222,7 +214,6 @@ def mapLog(log, mappings, indexer, switches):
 
     for traceId in traces:
         log.append(traces[traceId])
-    # log.append(defaultTrace)
 
 def extract(indexer, manifestPath, xesFilePath):
     manifest = json.load(open(manifestPath))

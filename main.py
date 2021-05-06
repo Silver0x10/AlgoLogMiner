@@ -57,7 +57,7 @@ def main(argv):
     missingManifest = True
     for opt, arg in opts:
         if( opt in ("-h", "--help") ):
-            print('main.py <manifestPath> [-o <outputFilePath>] [-a <indexerAddress>] [-t <indexerToken>]')
+            print('main.py <manifestPath> [-o <outputFilePath>] [-a <indexerAddress>] [-t <indexerToken>] \nDefault indexer address:\t' + indexer_address + '\nDefault indexer token:\t\t"' + indexer_token + '"')
             sys.exit()
         elif( opt in ("-m", "--manifest")):
             manifestPath = arg

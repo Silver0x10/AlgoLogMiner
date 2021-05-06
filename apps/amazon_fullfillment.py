@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import sys
 sys.path.insert(1, '/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/ExtractingLogs/Tests')
 from algorandUtility import connectToNode, newTransaction
@@ -13,7 +15,7 @@ from threading import Thread
 def receiveItems(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItemsReceived):
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Receive Items"
+    data["event-name"] = 10 # "Receive Items"
     data["actor"] = "Customer"
     data["n-items"] = str(nItemsReceived)
     json_data = json.dumps(data, indent=2)
@@ -26,7 +28,7 @@ def receiveItems(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_cl
 def deliverItems(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItems):
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Deliver Items"
+    data["event-name"] = 9 # "Deliver Items"
     data["actor"] = "Carrier"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
@@ -39,7 +41,7 @@ def deliverItems(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_cl
 def loadTruck(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItems):
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Load Truck"
+    data["event-name"] = 8 # "Load Truck"
     data["actor"] = "Carrier"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
@@ -52,7 +54,7 @@ def loadTruck(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_clien
 def sendToCarrierDock(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItems):
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Send to Carrier Dock"
+    data["event-name"] = 7 # "Send to Carrier Dock"
     data["actor"] = "Amazon Packager"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
@@ -65,7 +67,7 @@ def sendToCarrierDock(TraceId, managerAddr, managerPassphrase, receiverAddr, alg
 def receiveAndPackageItems(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItems):
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Receive and Package Items"
+    data["event-name"] = 6 # "Receive and Package Items"
     data["actor"] = "Amazon Packager"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
@@ -78,7 +80,7 @@ def receiveAndPackageItems(TraceId, managerAddr, managerPassphrase, receiverAddr
 def placeInBin(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItems):
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Place in Bin"
+    data["event-name"] = 5 # "Place in Bin"
     data["actor"] = "Amazon Picker"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
@@ -91,7 +93,7 @@ def placeInBin(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_clie
 def pickItems(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItems):
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Pick Items"
+    data["event-name"] = 4 # "Pick Items"
     data["actor"] = "Amazon Picker"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
@@ -112,7 +114,7 @@ def takePayment(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_cli
     
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Take Payment"
+    data["event-name"] = 3 # "Take Payment"
     data["actor"] = "Credit Card Company"
     data["accepted"] = str(accepted)
     json_data = json.dumps(data, indent=2)
@@ -127,7 +129,7 @@ def checkout(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client
     attempts = 1
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Pay Order"
+    data["event-name"] = 2 # "Pay Order"
     data["actor"] = "Customer"
     data["n-items"] = str(nItems)
 
@@ -157,7 +159,7 @@ def addItemToCart(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_c
     itemsInTheCart += 1
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Add Item to Cart"
+    data["event-name"] = 1 # "Add Item to Cart"
     data["n-items"] = str(itemsInTheCart)
     data["actor"] = "Customer"
     json_data = json.dumps(data, indent=2)
@@ -172,7 +174,7 @@ def addItemToCart(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_c
 def browseProducts(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, itemsInTheCart):
     data = {}
     data["trace-id"] = str(TraceId)
-    data["event-name"] = "Browse Products on Amazon"
+    data["event-name"] = 0 # "Browse Products on Amazon"
     data["actor"] = "Customer"
     json_data = json.dumps(data, indent=2)
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
@@ -184,8 +186,10 @@ def newOrderTrace(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_c
     nItemsOrdered = browseProducts(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, 0)
     if(nItemsOrdered): sendOrder(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItemsOrdered)
 
+def test(id):
+    print(id)
 
-def mainMultiprocess(idFirstNewTrace):
+def mainMultiprocess(idFirstNewTrace, nuoveTracce):
     algod_address = "http://localhost:4001" # see with 'cat $ALGORAND_DATA/algod.net' localhost:4001
     algod_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" # see with 'cat $ALGORAND_DATA/algod.token'
     algod_client = connectToNode(algod_address, algod_token)
@@ -195,15 +199,19 @@ def mainMultiprocess(idFirstNewTrace):
     fantoccio = "IWBZYBPTO4INJBALPJ3PDUPPSBKTGIYVIY3PCGL6LRJCIBEIIIKSF7UL2Y"
     
     processes = []
-    for i in range(os.cpu_count()):
-        print("Trace Id: " + str(idFirstNewTrace+i))
-        processes.append(Process(target=newOrderTrace(idFirstNewTrace+i, manager1, passphrase, fantoccio, algod_client)))
+    while(nuoveTracce > 0):
+        x = min(os.cpu_count(), nuoveTracce)
+        for i in range(x):
+            print("Trace Id: " + str(idFirstNewTrace+i))
+            processes.append(Process(target=newOrderTrace(idFirstNewTrace+i, manager1, passphrase, fantoccio, algod_client)))
+            # processes.append(Process(target=test(idFirstNewTrace+i)))
 
-    for process in processes:
-        process.start()
+        for process in processes:
+            process.start()
 
-    for process in processes:
-        process.join()
+        for process in processes:
+            process.join()
+        nuoveTracce = nuoveTracce - x
 
 
 def main(idFirstNewTrace):
@@ -217,53 +225,16 @@ def main(idFirstNewTrace):
 
     newOrderTrace(idFirstNewTrace, manager1, passphrase, fantoccio, algod_client)
 
-    # # Tests: 
-    # amount = 0
-    # data = {}
-    # data["test"] = "amount = 0"
-    # data["nested"] = {}
-    # data["nested"]["uno"] = "1"
-    # data["nested"]["due"] = "2"
-    # json_data = json.dumps(data, indent=2)
-    # newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, amount, json_data)
 
-# last id used = 11
-idFirstNewTrace = 12
+with open("./nextTraceId.txt", "r") as file:
+    idFirstNewTrace = int(file.readline())
+
+nuoveTracce = int(sys.argv[1])
+print(nuoveTracce)
 
 # main(idFirstNewTrace)
-mainMultiprocess(idFirstNewTrace)
+mainMultiprocess(idFirstNewTrace, nuoveTracce)
 
-
-# # Test multiprocessing
-# def test(i):
-#     for x in range(0,1000): 
-#         print(i)
-
-# processes = []
-
-# for i in range(os.cpu_count()):
-#     print("registering process %d" % i)
-#     processes.append(Process(target=test(1 + i)))
-
-# for process in processes:
-#     process.start()
-
-# for process in processes:
-#     process.join()
-
-# # Test multithreading
-# def test(i):
-#     for x in range(0,100): 
-#         print(i)
-
-# threads = []
-
-# for i in range(os.cpu_count()):
-#     print("registering thread %d" % i)
-#     threads.append(Thread(target=test(1 + i)))
-
-# for thread in threads:
-#     thread.start()
-
-# for thread in threads:
-#     thread.join()
+idFirstNewTrace = idFirstNewTrace + nuoveTracce
+with open("./nextTraceId.txt", "w") as file:
+    file.write(str(idFirstNewTrace))
