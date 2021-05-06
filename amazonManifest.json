@@ -47,6 +47,11 @@
                 [ 
                     {"key" : "address", "val" : "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU", "type" : "address"},
                     {"key" : "min_round", "val" : "59400", "type" : "int"},
+                    {"key" : "max_round", "val" : "60500", "type" : "int"} 
+                ],
+                [ 
+                    {"key" : "address", "val" : "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU", "type" : "address"},
+                    {"key" : "min_round", "val" : "93000", "type" : "int"},
                     {"key" : "max_round", "val" : "95000", "type" : "int"} 
                 ]
             ],
@@ -58,76 +63,76 @@
                     },
                     "traceMappings" : [
                         {
-                            "identifier:id" : { "parameter" : { "key" : "note.trace-id", "type" : "int" } },
-                            "time:firstEvent" : { "parameter" : { "key" : "round-time", "type" : "date" } }
+                            "identifier:id" : { "parameter" : { "key" : "note.trace-id", "type" : "int" }, "nullable" : false},
+                            "time:firstEvent" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false }
                         }
                     ],
                     "eventMappings" : [
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "0", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "0", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "1", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "1", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "2", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } },
-                            "attempt-num" : { "parameter" : { "key" : "note.attempt-num", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "2", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false },
+                            "attempt-num" : { "parameter" : { "key" : "note.attempt-num", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "3", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "accepted" : { "parameter" : { "key" : "note.accepted", "type" : "string" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "3", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "accepted" : { "parameter" : { "key" : "note.accepted", "type" : "string" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "4", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "4", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "5", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "5", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "6", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "6", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "7", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "7", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "8", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "8", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "9", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "9", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "10", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNames", "value" : "10", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         }
                     ]                
                 }, 
@@ -139,76 +144,76 @@
                     },
                     "traceMappings" : [
                         {
-                            "identifier:id" : { "parameter" : { "key" : "note.trace-id", "type" : "int" } },
-                            "time:firstEvent" : { "parameter" : { "key" : "round-time", "type" : "date" } }
+                            "identifier:id" : { "parameter" : { "key" : "note.trace-id", "type" : "int" }, "nullable" : false },
+                            "time:firstEvent" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false }
                         }
                     ],
                     "eventMappings" : [
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Browse Products on Amazon", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Browse Products on Amazon", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Add Item to Cart", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Add Item to Cart", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Pay Order", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } },
-                            "attempt-num" : { "parameter" : { "key" : "note.attempt-num", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Pay Order", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false },
+                            "attempt-num" : { "parameter" : { "key" : "note.attempt-num", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Take Payment", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "accepted" : { "parameter" : { "key" : "note.accepted", "type" : "string" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Take Payment", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "accepted" : { "parameter" : { "key" : "note.accepted", "type" : "string" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Pick Items", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Pick Items", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Place in Bin", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Place in Bin", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Receive and Package Items", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Receive and Package Items", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Send to Carrier Dock", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Send to Carrier Dock", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Load Truck", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Load Truck", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Deliver Items", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Deliver Items", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         },
                         {
-                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Receive Items", "key" : "note.event-name", "type" : "string" } },
-                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" } },
-                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" } },
-                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" } }
+                            "concept:name" : { "selector" : { "switch" : "eventNamesOld", "value" : "Receive Items", "key" : "note.event-name", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "actor" : { "parameter" : { "key" : "note.actor", "type" : "string" }, "nullable" : false },
+                            "n-items" : { "parameter" : { "key" : "note.n-items", "type" : "int" }, "nullable" : false }
                         }
                     ]                
                 }

@@ -163,7 +163,7 @@ def setEvent(txn, eventMapping, trace, switches):
         attributeData = getAttributeData(txn, attributeKey, eventMapping, switches)
         if(attributeData != None):
             event.get_attributes()[attributeKey] = attributeFactory(attributeKey, attributeData[0], attributeData[1])
-        else: # Modificare qui per rendere non vincolante l'assenza di un attributo 
+        elif(not eventMapping[attributeKey]["nullable"]):
             ok = False
             break
     
@@ -179,6 +179,8 @@ def setTrace(idAttrKey, idAttrValue, idAttrType, transaction, traceMap, switches
                 attributeValue = attributeData[0]
                 attributeType = attributeData[1]
                 trace.get_attributes()[attributeKey] = attributeFactory(attributeKey, attributeValue, attributeType)
+            elif(not traceMap[attributeKey]["nullable"]):
+                return None
     return trace
 
 def setTraces(transactions, traces, traceMap, eventMappings, switches):
@@ -192,6 +194,7 @@ def setTraces(transactions, traces, traceMap, eventMappings, switches):
                 trace = traces[idAttrValue]
         except:
             trace = setTrace(idAttrKey, idAttrValue, idAttrType, txn, traceMap, switches)
+            if(trace == None): continue
             traces[idAttrValue] = trace
         
         for eventMap in eventMappings:
