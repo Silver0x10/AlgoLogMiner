@@ -163,7 +163,7 @@ def setEvent(txn, eventMapping, trace, switches):
         attributeData = getAttributeData(txn, attributeKey, eventMapping, switches)
         if(attributeData != None):
             event.get_attributes()[attributeKey] = attributeFactory(attributeKey, attributeData[0], attributeData[1])
-        elif(not eventMapping[attributeKey]["nullable"]):
+        elif("nullable" not in eventMapping[attributeKey] or not eventMapping[attributeKey]["nullable"]):
             ok = False
             break
     
@@ -179,7 +179,7 @@ def setTrace(idAttrKey, idAttrValue, idAttrType, transaction, traceMap, switches
                 attributeValue = attributeData[0]
                 attributeType = attributeData[1]
                 trace.get_attributes()[attributeKey] = attributeFactory(attributeKey, attributeValue, attributeType)
-            elif(not traceMap[attributeKey]["nullable"]):
+            elif("nullable" not in traceMap[attributeKey] or not traceMap[attributeKey]["nullable"]):
                 return None
     return trace
 
@@ -215,6 +215,7 @@ def mapLog(log, mappings, indexer, switches):
             for traceMap in logMap["traceMappings"]:
                 setTraces(usefulTransactions, traces, traceMap, logMap["eventMappings"], switches)
 
+    
     for traceId in traces:
         log.append(traces[traceId])
 
