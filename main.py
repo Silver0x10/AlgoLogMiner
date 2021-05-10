@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import argparse
 from os import MFD_ALLOW_SEALING
 from algosdk.v2client import algod, indexer
 import json
@@ -42,51 +43,37 @@ def test(myIndexer):
             nexttoken = response["next-token"]
             print(json.dumps(response, indent=2, sort_keys=True))
 
-def main(argv):
-    indexer_token=""
-    indexer_address="http://localhost:8980"
-    manifestPath = ""
-    xesFilePath = "extractedEventLog.xes"
-    optString = 'main.py <manifestPath> [-o <outputFilePath>] [-a <indexerAddress>] [-t <indexerToken>] [--testnet] [--betanet] [--mainnet]'
-    try:
-        opts, args = getopt.getopt(argv,"hm:o:a:t:",["help", "manifest=", "output=", "indexerAddress=", "indexerToken=", "testnet"])
-    except getopt.GetoptError:
-        print(optString)
-        sys.exit(2)
-    
-    missingManifest = True
-    for opt, arg in opts:
-        if( opt in ("-h", "--help") ):
-            print(optString + '\nDefault indexer address:\t' + indexer_address + '\nDefault indexer token:\t\t"' + indexer_token + '"')
-            sys.exit()
-        elif( opt in ("-m", "--manifest")):
-            manifestPath = arg
-            missingManifest = False
-        elif( opt in ("-o", "--output") ):
-            xesFilePath = arg if arg.lower().endswith(('.xes')) else arg + ".xes"
-        elif( opt in ("-a", "--indexerAddress") ):
-            indexer_address = arg
-        elif( opt in ("-t", "--indexerToken") ):
-            indexer_token = arg
-        elif( opt in ("--testnet") ):
-            indexer_address = "https://testnet.algoexplorerapi.io/idx2"
-        elif( opt in ("--betanet") ):
-            indexer_address = "https://betanet.algoexplorerapi.io/idx2"
-        elif( opt in ("--mainnet") ):
-            indexer_address = "https://algoexplorerapi.io/idx2"
 
-    if(missingManifest):
-        print("Missing json manifest!")
-        sys.exit(1)
-    if(not manifestPath.lower().endswith(('.json'))):
-        print("The manifest must be a json")
-        sys.exit(1)
-
+def main(indexer_token, indexer_address, manifestPath, outputXesPath):
     theIndexer = indexer.IndexerClient(indexer_token, indexer_address, headers={'User-Agent': '?'})
 
-    extract(theIndexer, manifestPath, xesFilePath)
+    extract(theIndexer, manifestPath, outputXesPath)
     sys.exit(0)
     
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("manifest", help="Manifest path. This document is needed by the extractor to generate the xes file")
+    parser.add_argument("-o", "--output", help="Path of the xes that will be generated", default="extractedEventLog.xes")
+    parser.add_argument("-t", "--indexerToken", help="Token of the indexer", default="")
+    parser.add_argument("-a", "--indexerAddress", help="Address of the indexer. Do not use with option -b", default="http://localhost:8980")
+    parser.add_argument("-b", "--blockchain", choices=["testnet", "betanet", "mainnet"], help="Select the network between: Testnet indexer at https://testnet.algoexplorerapi.io/idx2; Betanet indexer at https://betanet.algoexplorerapi.io/idx2; Mainnet indexer at https://algoexplorerapi.io/idx2. Do not use with option -a. ")
+    args = parser.parse_args()
+
+    manifestPath = args.manifest
+    if(not manifestPath.lower().endswith(('.json'))):
+        print("The manifest must be a json")
+        sys.exit(1)
+
+    xesFilePath = args.output if args.output.lower().endswith(('.xes')) else args.output + ".xes"
+    indexer_token = args.indexerToken
+    if(args.blockchain == "testnet"):
+        indexer_address = "https://testnet.algoexplorerapi.io/idx2"
+    elif(args.blockchain == "betanet"):
+        indexer_address = "https://betanet.algoexplorerapi.io/idx2"
+    elif(args.blockchain == "mainnet"):
+        indexer_address = "https://algoexplorerapi.io/idx2"
+    else:
+        indexer_address = args.indexerAddress
+
+    main(indexer_token, indexer_address, manifestPath, xesFilePath)
