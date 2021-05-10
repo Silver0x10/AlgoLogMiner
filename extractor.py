@@ -89,9 +89,13 @@ def extractFromDict(dict, position):
 
 def extractFromTransaction(transaction, position):
     value = transaction
-    if(position[:4] == "note"):
+    if(position[:5] == "note." or position == "note"):
         if("." in position):
-            value = json.loads(b64decode(transaction["note"]).decode())
+            # print(unicode(b64decode(transaction["note"])), errors='ignore')
+            try:
+                value = json.loads(b64decode(transaction["note"]).decode())
+            except:
+                return None
             value = extractFromDict(value, position[5:])
         else:
             value = b64decode(transaction["note"]).decode()
@@ -187,7 +191,9 @@ def setTraces(transactions, traces, traceMap, eventMappings, switches):
     idAttrKey = "identifier:id"
 
     for txn in transactions:
-        idAttrValue, idAttrType = getAttributeData(txn, idAttrKey, traceMap, switches)
+        data = getAttributeData(txn, idAttrKey, traceMap, switches)
+        if(data == None): continue
+        idAttrValue, idAttrType = data
 
         try:
             if(idAttrValue != None):

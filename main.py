@@ -47,17 +47,17 @@ def main(argv):
     indexer_address="http://localhost:8980"
     manifestPath = ""
     xesFilePath = "extractedEventLog.xes"
-    
+    optString = 'main.py <manifestPath> [-o <outputFilePath>] [-a <indexerAddress>] [-t <indexerToken>] [--testnet] [--betanet] [--mainnet]'
     try:
-        opts, args = getopt.getopt(argv,"hm:o:a:t:",["help", "manifest=", "output=", "indexerAddress=", "indexerToken="])
+        opts, args = getopt.getopt(argv,"hm:o:a:t:",["help", "manifest=", "output=", "indexerAddress=", "indexerToken=", "testnet"])
     except getopt.GetoptError:
-        print('main.py <manifestPath> [-o <outputFilePath>] [-a <indexerAddress>] [-t <indexerToken>]')
+        print(optString)
         sys.exit(2)
     
     missingManifest = True
     for opt, arg in opts:
         if( opt in ("-h", "--help") ):
-            print('main.py <manifestPath> [-o <outputFilePath>] [-a <indexerAddress>] [-t <indexerToken>] \nDefault indexer address:\t' + indexer_address + '\nDefault indexer token:\t\t"' + indexer_token + '"')
+            print(optString + '\nDefault indexer address:\t' + indexer_address + '\nDefault indexer token:\t\t"' + indexer_token + '"')
             sys.exit()
         elif( opt in ("-m", "--manifest")):
             manifestPath = arg
@@ -68,6 +68,12 @@ def main(argv):
             indexer_address = arg
         elif( opt in ("-t", "--indexerToken") ):
             indexer_token = arg
+        elif( opt in ("--testnet") ):
+            indexer_address = "https://testnet.algoexplorerapi.io/idx2"
+        elif( opt in ("--betanet") ):
+            indexer_address = "https://betanet.algoexplorerapi.io/idx2"
+        elif( opt in ("--mainnet") ):
+            indexer_address = "https://algoexplorerapi.io/idx2"
 
     if(missingManifest):
         print("Missing json manifest!")
@@ -76,7 +82,7 @@ def main(argv):
         print("The manifest must be a json")
         sys.exit(1)
 
-    theIndexer = indexer.IndexerClient(indexer_token, indexer_address)
+    theIndexer = indexer.IndexerClient(indexer_token, indexer_address, headers={'User-Agent': '?'})
 
     extract(theIndexer, manifestPath, xesFilePath)
     sys.exit(0)
@@ -84,17 +90,3 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
-
-
-
-# algod_address = "http://localhost:4001" # see with 'cat $ALGORAND_DATA/algod.net' localhost:4001
-# algod_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" # see with 'cat $ALGORAND_DATA/algod.token'
-
-# algod_client = connectToNode(algod_address, algod_token)
-
-# response = theIndexer.search_transactions(address='PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU', )
-# print(json.dumps(response, indent=2, sort_keys=True))
-# return
-# test(myIndexer)
-
-# theIndexer.search_transactions(txn_type=)

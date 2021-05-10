@@ -5,11 +5,11 @@ from algosdk.v2client import indexer
 from algosdk.future.transaction import PaymentTxn
 import base64
 
-def connectToNode(algod_address, algod_token):
+def connectToNode(algod_address, algod_token, headers={'User-Agent': '?'}):
     print("## START connection to node function ##\n")
 
     # create an algod client
-    algod_client = algod.AlgodClient(algod_token, algod_address)
+    algod_client = algod.AlgodClient(algod_token, algod_address, headers)
 
     # check node status
     status = algod_client.status()

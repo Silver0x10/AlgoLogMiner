@@ -1,14 +1,16 @@
 #!/usr/bin/python3
 
 import sys
-sys.path.insert(1, '/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/ExtractingLogs/Tests')
-from algorandUtility import connectToNode, newTransaction
-# from Tests.algorandUtility import connectToNode, newTransaction
+from urllib import parse
+# sys.path.insert(1, '/media/InterOS/Condivise/Università/Terzo Anno/Tirocinio/ExtractingLogs/Tests')
+from algorandUtility import newTransaction
 import json
 from random import random
 import os
 from multiprocessing import Process
 from threading import Thread
+import argparse
+from algosdk.v2client import algod
 
 # base64.b64decode(txn["txn"]["txn"]["note"]).decode()
 
@@ -189,21 +191,17 @@ def newOrderTrace(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_c
 def test(id):
     print(id)
 
-def mainMultiprocess(idFirstNewTrace, nuoveTracce):
-    algod_address = "http://localhost:4001" # see with 'cat $ALGORAND_DATA/algod.net' localhost:4001
-    algod_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" # see with 'cat $ALGORAND_DATA/algod.token'
-    algod_client = connectToNode(algod_address, algod_token)
-
-    manager1 = "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU"
+def main(algod_client,idFirstNewTrace, newTraces):
+    manager = "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU"
     passphrase = "wolf profit edge place venture once fatal rifle iron able bounce capital section poet dignity artefact mandate mutual music tree hover mimic moment ability hotel"
     fantoccio = "IWBZYBPTO4INJBALPJ3PDUPPSBKTGIYVIY3PCGL6LRJCIBEIIIKSF7UL2Y"
     
     processes = []
-    while(nuoveTracce > 0):
-        x = min(os.cpu_count(), nuoveTracce)
+    while(newTraces > 0):
+        x = min(os.cpu_count(), newTraces)
         for i in range(x):
             print("Trace Id: " + str(idFirstNewTrace+i))
-            processes.append(Process(target=newOrderTrace(idFirstNewTrace+i, manager1, passphrase, fantoccio, algod_client)))
+            processes.append(Process(target=newOrderTrace(idFirstNewTrace+i, manager, passphrase, fantoccio, algod_client)))
             # processes.append(Process(target=test(idFirstNewTrace+i)))
 
         for process in processes:
@@ -211,30 +209,33 @@ def mainMultiprocess(idFirstNewTrace, nuoveTracce):
 
         for process in processes:
             process.join()
-        nuoveTracce = nuoveTracce - x
+        newTraces = newTraces - x
 
 
-def main(idFirstNewTrace):
-    algod_address = "http://localhost:4001" # see with 'cat $ALGORAND_DATA/algod.net' localhost:4001
-    algod_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" # see with 'cat $ALGORAND_DATA/algod.token'
-    algod_client = connectToNode(algod_address, algod_token)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("traces", help="Number of new traces", type=int)
+    parser.add_argument("--testnet", help="New transactions on the testnet", action="store_true")
+    parser.add_argument("--address", help="Algorand Node address", default="http://localhost:4001")
+    parser.add_argument("--token", help="Algorand Node token", default="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    parser.add_argument("--nextTraceIdFile", help="File containing the id of the next trace", default="./nextTraceIdLocal.txt")
+    args = parser.parse_args()
+    if args.testnet:
+        algod_address = "https://testnet.algoexplorerapi.io" 
+        algod_token = ""
+        nextIdFile = "./nextTraceId.txt"
+    else:
+        algod_address = args.address 
+        algod_token = args.token
+        nextIdFile = args.nextTraceIdFile
 
-    manager1 = "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU"
-    passphrase = "wolf profit edge place venture once fatal rifle iron able bounce capital section poet dignity artefact mandate mutual music tree hover mimic moment ability hotel"
-    fantoccio = "IWBZYBPTO4INJBALPJ3PDUPPSBKTGIYVIY3PCGL6LRJCIBEIIIKSF7UL2Y"
+    with open(nextIdFile, "r") as file:
+        idFirstNewTrace = int(file.readline())
 
-    newOrderTrace(idFirstNewTrace, manager1, passphrase, fantoccio, algod_client)
+    newTraces = int(args.traces)
+    algod_client = algod.AlgodClient(algod_token, algod_address, headers={'User-Agent': '?'})
+    main(algod_client, idFirstNewTrace, newTraces)
 
-
-with open("./nextTraceId.txt", "r") as file:
-    idFirstNewTrace = int(file.readline())
-
-nuoveTracce = int(sys.argv[1])
-print(nuoveTracce)
-
-# main(idFirstNewTrace)
-mainMultiprocess(idFirstNewTrace, nuoveTracce)
-
-idFirstNewTrace = idFirstNewTrace + nuoveTracce
-with open("./nextTraceId.txt", "w") as file:
-    file.write(str(idFirstNewTrace))
+    idFirstNewTrace = idFirstNewTrace + newTraces
+    with open(nextIdFile, "w") as file:
+        file.write(str(idFirstNewTrace))
