@@ -1,0 +1,50 @@
+{
+    "xesExtensions" : [
+        {"name" : "Time", "prefix" : "time", "uri" : "http://www.xes-standard.org/time.xesext"},
+        {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"},
+        {"name" : "Identity", "prefix" : "identity", "uri" : "http://www.xes-standard.org/identity.xesext"}
+    ],
+    "xesGlobals" : [
+        
+    ],
+    "xesClassifiers" : [
+        
+    ],
+    "switches" : {
+        
+    },
+    "mappings" : [
+        {   
+            "indexerFilters" : [
+                [ 
+                    {"key" : "address", "val" : "BY6UJNZ2MD3AZC2K2KQJW7W7OWPGGIBNOSZGFZQ6L426BTGO5G2FOI6VPI", "type" : "address"},
+                    {"key" : "min_round", "val" : "8712119", "type" : "int"},
+                    {"key" : "min_amount", "val" : "1", "type" : "int"},
+                    {"key" : "asset_id", "val" : "27165954", "type" : "int"},
+                    {"key" : "address_role", "val" : "sender", "type" : "string"}
+                ]
+            ],
+            "logMappings" : [
+                {
+                    "mappingName" : "",
+                    "singleTxnFilters" : {
+                        "tx-type" : ["axfer"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "static" : { "value" : "test", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Planet Release", "type" : "string" }, "nullable" : false },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "receiver" : { "parameter" : { "key" : "asset-transfer-transaction.receiver", "type" : "string" }, "nullable" : false },
+                            "amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" }, "nullable" : false }
+                        }
+                    ]                
+                }
+            ]
+        }
+    ]
+}

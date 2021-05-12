@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<!--This file has been generated with the OpenXES library. It conforms-->
+<!--to the XML serialization of the XES standard for log storage and-->
+<!--management.-->
+<!--XES standard version: 1.0-->
+<!--OpenXES library version: 1.0RC7-->
+<!--OpenXES is available from http://www.openxes.org/-->
+<log xes.version="1.0" xes.features="nested-attributes" openxes.version="1.0RC7">
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
+	<extension name="Identity" prefix="identity" uri="http://www.xes-standard.org/identity.xesext"/>
+	<trace>
+		<string key="identifier:id" value="test"/>
+		<event>
+			<string key="concept:name" value="Planet Release"/>
+			<date key="time:timestamp" value="2020-08-27T13:51:28.000Z"/>
+			<string key="receiver" value="OHN4YUFXM6ZJGBOC5ANUZFKNDGA4LFA75TLJINZ2AU2PGS2VKTSCRXCVRY"/>
+			<int key="amount" value="225000000000000"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Planet Release"/>
+			<date key="time:timestamp" value="2020-08-27T14:16:33.000Z"/>
+			<string key="receiver" value="ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W754"/>
+			<int key="amount" value="1000000000000"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Planet Release"/>
+			<date key="time:timestamp" value="2021-02-08T16:14:16.000Z"/>
+			<string key="receiver" value="ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W754"/>
+			<int key="amount" value="1000000000000"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Planet Release"/>
+			<date key="time:timestamp" value="2021-04-15T16:46:47.000Z"/>
+			<string key="receiver" value="ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W754"/>
+			<int key="amount" value="1000000000000"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Planet Release"/>
+			<date key="time:timestamp" value="2021-05-03T13:08:56.000Z"/>
+			<string key="receiver" value="PJLPUBJMHDYKL2EYGICXWSASANWTTQA7DBQTH3UJQTQDIA7LEV6M6BHQVY"/>
+			<int key="amount" value="50000000000"/>
+		</event>
+	</trace>
+</log>
