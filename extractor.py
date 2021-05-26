@@ -56,7 +56,7 @@ def setClassifiers(log, classifierList):
 def getTransactions(indexer, indexerFilters):
     searchString = "indexer.search_transactions("
     for filter in indexerFilters: # da sistemare in base agli argomenti di search_transactions e al loro tipo
-        if(filter["type"] == "address" or filter["type"] == "string"):
+        if(filter["type"] in ["address", "string", "str"]):
             searchString += filter["key"] + "='" + filter["val"] + "', "
         elif(filter["type"] == "int"):
             searchString += filter["key"] + "=" + filter["val"] + ", "

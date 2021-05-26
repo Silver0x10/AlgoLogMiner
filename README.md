@@ -1,4 +1,3 @@
 # ExtractingLogs
 
-
-To do...
+XES event log extractor from Algorand blockchain.
