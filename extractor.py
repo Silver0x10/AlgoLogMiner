@@ -10,7 +10,8 @@ from opyenxes.factory.XFactory import XFactory
 from opyenxes.data_out.XesXmlSerializer import XesXmlSerializer
 # from opyenxes.extension.XExtension import XExtension
 from opyenxes.extension.XExtensionManager import XExtensionManager, XTimeExtension, XConceptExtension, XIdentityExtension
-from os import system
+from os import error, system
+import string
 
 def attributeFactory(key, value, type):
     attribute = None
@@ -73,37 +74,37 @@ def getTransactions(indexer, indexerFilters):
             for tx in response["transactions"]: transactions.append(tx)
             nexttoken = response["next-token"]
 
-    # if(genTxsJson):
-    #     with open("./transactions/"+ txnsFileName +".json", "w") as f:
-    #         json.dump(transactions, f, indent=2, sort_keys=True)
+    with open("./transactionsFromIndexer.txt", "a") as f:
+        f.write("\n##############################################################\n\n")
+        f.write(searchString + "\nRESULTS:\n\n")
+        json.dump(transactions, f, indent=2, sort_keys=True)
+        f.write("\n\n\n")
+    
     return transactions    
 
-###
-def extractFromDict(dict, position):
-    value = dict
-    for pos in position.split("."):
-        if(pos in value.keys()):
-            value = value[pos]
-        else: return None
-    return value
-
-def extractFromTransaction(transaction, position):
-    value = transaction
-    if(position[:5] == "note." or position == "note"):
-        if("." in position):
-            # print(unicode(b64decode(transaction["note"])), errors='ignore')
-            try:
-                value = json.loads(b64decode(transaction["note"]).decode())
-            except:
-                return None
-            value = extractFromDict(value, position[5:])
-        else:
-            value = b64decode(transaction["note"]).decode()
-    else:
-        value = extractFromDict(transaction, position)
-
-    return value
-###
+def extractFromTransaction(collection, position):
+    try:
+        if(position.find(".") == -1):
+            if(position == "note"):
+                return b64decode(collection[position]).decode()
+            elif(position.isnumeric()):
+                return collection[int(position)]
+            else:
+                return collection[position]
+        else: # nested position
+            if(position[:5] == "note."):
+                note = json.loads(b64decode(collection["note"]).decode())
+                return extractFromTransaction(note, position[5:])
+            elif(position.split(".")[0].isnumeric()):
+                fieldIndex = int(position.split(".")[0])
+                nextPositionStart = position.find(".") + 1
+                return extractFromTransaction(collection[fieldIndex], position[nextPositionStart:])
+            else:
+                field = position.split(".")[0]
+                nextPositionStart = position.find(".") + 1
+                return extractFromTransaction(collection[field], position[nextPositionStart:])
+    except KeyError:
+        return None
 
 def filterTransactions(transactions, txnFilters):
     filteredTxs = []
@@ -114,8 +115,8 @@ def filterTransactions(transactions, txnFilters):
             if(value == None):
                 ok = False
                 break
+            print(str(value) in txnFilters[filter])
             if(str(value) not in txnFilters[filter]): 
-                print(txnFilters[filter])
                 ok = False
                 break
         if(ok): filteredTxs.append(txn)
@@ -221,16 +222,18 @@ def mapLog(log, mappings, indexer, switches):
             for traceMap in logMap["traceMappings"]:
                 setTraces(usefulTransactions, traces, traceMap, logMap["eventMappings"], switches)
 
-    
     for traceId in traces:
-        log.append(traces[traceId])
+        trace = traces[traceId]
+        if(len(trace) > 0): log.append(trace)
 
 def extract(indexer, manifestPath, xesFilePath):
     manifest = json.load(open(manifestPath))
-
     log = XFactory.create_log()
-
     switches = {}
+
+    with open("./transactionsFromIndexer.txt", "w") as f:
+        f.write("")
+    
     for key in manifest:
         if(key == "xesExtensions"): setExtension(log, manifest[key])
         elif(key == "xesClassifiers"): setClassifiers(log, manifest[key])

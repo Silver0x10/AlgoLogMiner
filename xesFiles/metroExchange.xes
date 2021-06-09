@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<!--This file has been generated with the OpenXES library. It conforms-->
+<!--to the XML serialization of the XES standard for log storage and-->
+<!--management.-->
+<!--XES standard version: 1.0-->
+<!--OpenXES library version: 1.0RC7-->
+<!--OpenXES is available from http://www.openxes.org/-->
+<log xes.version="1.0" xes.features="nested-attributes" openxes.version="1.0RC7">
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
+	<extension name="Identity" prefix="identity" uri="http://www.xes-standard.org/identity.xesext"/>
+	<trace>
+		<string key="identifier:id" value="/Mb0SBvBY8JbxRzOZ0fTawq3SrPzOW0HC4clS6tRJR8="/>
+		<event>
+			<string key="concept:name" value="ECO Payment"/>
+			<date key="time:timestamp" value="2021-03-09T16:17:13.000Z"/>
+			<string key="user address" value="T5HO4K4RAPASDATFJRTPW66ADGOGSR6DPTPI6PGH54KVV76NYCH7LB4NUE"/>
+			<int key="ECO amount" value="15"/>
+		</event>
+		<event>
+			<string key="concept:name" value="METRO Collection"/>
+			<date key="time:timestamp" value="2021-03-09T16:17:13.000Z"/>
+			<string key="user address" value="T5HO4K4RAPASDATFJRTPW66ADGOGSR6DPTPI6PGH54KVV76NYCH7LB4NUE"/>
+			<int key="METRO amount" value="1"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="identifier:id" value="d7AgJJuwX3QpASKfKifsLT4BsIn6YsnL18FStn/Jyu0="/>
+		<event>
+			<string key="concept:name" value="ECO Payment"/>
+			<date key="time:timestamp" value="2021-03-11T15:23:32.000Z"/>
+			<string key="user address" value="T5HO4K4RAPASDATFJRTPW66ADGOGSR6DPTPI6PGH54KVV76NYCH7LB4NUE"/>
+			<int key="ECO amount" value="15"/>
+		</event>
+		<event>
+			<string key="concept:name" value="METRO Collection"/>
+			<date key="time:timestamp" value="2021-03-11T15:23:32.000Z"/>
+			<string key="user address" value="T5HO4K4RAPASDATFJRTPW66ADGOGSR6DPTPI6PGH54KVV76NYCH7LB4NUE"/>
+			<int key="METRO amount" value="1"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="identifier:id" value="EPzt0esUx2xgoTCfKnX6d9jYBx5G1RON1BMBzOgxu4c="/>
+		<event>
+			<string key="concept:name" value="ECO Payment"/>
+			<date key="time:timestamp" value="2021-03-11T18:05:21.000Z"/>
+			<string key="user address" value="T5HO4K4RAPASDATFJRTPW66ADGOGSR6DPTPI6PGH54KVV76NYCH7LB4NUE"/>
+			<int key="ECO amount" value="15"/>
+		</event>
+		<event>
+			<string key="concept:name" value="METRO Collection"/>
+			<date key="time:timestamp" value="2021-03-11T18:05:21.000Z"/>
+			<string key="user address" value="T5HO4K4RAPASDATFJRTPW66ADGOGSR6DPTPI6PGH54KVV76NYCH7LB4NUE"/>
+			<int key="METRO amount" value="1"/>
+		</event>
+	</trace>
+</log>

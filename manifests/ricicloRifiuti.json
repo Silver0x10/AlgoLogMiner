@@ -1,0 +1,73 @@
+{
+    "xesExtensions" : [
+        {"name" : "Time", "prefix" : "time", "uri" : "http://www.xes-standard.org/time.xesext"},
+        {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"},
+        {"name" : "Identity", "prefix" : "identity", "uri" : "http://www.xes-standard.org/identity.xesext"}
+    ],
+    "xesGlobals" : [
+        
+    ],
+    "xesClassifiers" : [
+        
+    ],
+    "switches" : {
+        
+    },
+    "mappings" : [
+        {   
+            "indexerFilters" : [
+                [ 
+                    {"key" : "address", "val" : "YERHLDMYRIHDEHYQYQUFDXRQ7ATLFNIY6RXM7XDAWXLV4LCBCEDDCX4K7M", "type" : "address"},
+                    {"key" : "asset_id", "val" : "14531028", "type" : "int"},
+                    {"key" : "address_role", "val" : "sender", "type" : "string"},
+                    {"key" : "txn_type", "val" : "axfer", "type" : "string"}
+                ],
+                [ 
+                    {"key" : "application_id", "val" : "14877441", "type" : "int"},
+                    {"key" : "txn_type", "val" : "appl", "type" : "string"}
+                ]
+            ],
+            "logMappings" : [
+                {
+                    "mappingName" : "ASA Transaction",
+                    "singleTxnFilters" : {
+                        "tx-type" : ["axfer"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "ECO Transaction", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "receiver" : { "parameter" : { "key" : "asset-transfer-transaction.receiver", "type" : "string" }, "nullable" : false },
+                            "ECO amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" }, "nullable" : false }
+                        }
+                    ]                
+                },
+                {
+                    "mappingName" : "ASC Call",
+                    "singleTxnFilters" : {
+                        "tx-type" : ["appl"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Application Call", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "user address" : { "parameter" : { "key" : "sender", "type" : "string" }, "nullable" : false },
+                            "global value" : { "parameter" : { "key" : "global-state-delta.0.value.uint", "type" : "int" }, "nullable" : false },
+                            "local value" : { "parameter" : { "key" : "local-state-delta.0.delta.0.value.uint", "type" : "int" }, "nullable" : false }
+                        }
+                    ]                
+                }
+            ]
+        }
+    ]
+}

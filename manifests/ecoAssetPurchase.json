@@ -1,0 +1,75 @@
+{
+    "xesExtensions" : [
+        {"name" : "Time", "prefix" : "time", "uri" : "http://www.xes-standard.org/time.xesext"},
+        {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"},
+        {"name" : "Identity", "prefix" : "identity", "uri" : "http://www.xes-standard.org/identity.xesext"}
+    ],
+    "xesGlobals" : [
+        
+    ],
+    "xesClassifiers" : [
+        
+    ],
+    "switches" : {
+        
+    },
+    "mappings" : [
+        {   
+            "indexerFilters" : [
+                [ 
+                    {"key" : "address", "val" : "LXPP6OQ4R63MQVODQ3EAWDLT7QXKOIWTUQQDJAVEWHT3IG3FHOETT7ZBDM", "type" : "address"},
+                    {"key" : "asset_id", "val" : "14531028", "type" : "int"},
+                    {"key" : "address_role", "val" : "sender", "type" : "string"},
+                    {"key" : "txn_type", "val" : "axfer", "type" : "string"}
+                ],
+                [ 
+                    {"key" : "address", "val" : "ROV6LJIUDCSQEVX2AU7CWGOEZT2DQJUDLOYUP56MQGKVI2ECZXNUSUDOLU", "type" : "address"},
+                    {"key" : "address_role", "val" : "receiver", "type" : "string"},
+                    {"key" : "txn_type", "val" : "pay", "type" : "string"}
+                ]
+            ],
+            "logMappings" : [
+                {
+                    "mappingName" : "ECO Transactions",
+                    "singleTxnFilters" : {
+                        "asset-transfer-transaction.asset-id" : ["14531028"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "ECO Collection", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "user address" : { "parameter" : { "key" : "asset-transfer-transaction.receiver", "type" : "string" }, "nullable" : false },
+                            "sender" : { "parameter" : { "key" : "sender", "type" : "string" }, "nullable" : false },
+                            "ECO amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" }, "nullable" : false }
+                        }
+                    ]                
+                },
+                {
+                    "mappingName" : "Algo Transactions",
+                    "singleTxnFilters" : {
+                        "payment-transaction.receiver" : ["ROV6LJIUDCSQEVX2AU7CWGOEZT2DQJUDLOYUP56MQGKVI2ECZXNUSUDOLU"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Algo Payment", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "user address" : { "parameter" : { "key" : "sender", "type" : "string" }, "nullable" : false },
+                            "receiver" : { "parameter" : { "key" : "payment-transaction.receiver", "type" : "string" }, "nullable" : false },
+                            "microAlgo amount" : { "parameter" : { "key" : "payment-transaction.amount", "type" : "int" }, "nullable" : false }
+                        }
+                    ]                
+                }
+            ]
+        }
+    ]
+}

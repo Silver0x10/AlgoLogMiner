@@ -1,0 +1,100 @@
+{
+    "xesExtensions" : [
+        {"name" : "Time", "prefix" : "time", "uri" : "http://www.xes-standard.org/time.xesext"},
+        {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"},
+        {"name" : "Identity", "prefix" : "identity", "uri" : "http://www.xes-standard.org/identity.xesext"}
+    ],
+    "xesGlobals" : [
+        
+    ],
+    "xesClassifiers" : [
+        
+    ],
+    "switches" : {
+        
+    },
+    "mappings" : [
+        {   
+            "indexerFilters" : [
+                [ 
+                    {"key" : "address", "val" : "RYRYZOAQNG6SAD3XQMRIRH3VR7TRWIMYR5BZLA4OEKUEQXI7ZO62I74BQM", "type" : "address"},
+                    {"key" : "asset_id", "val" : "14967831", "type" : "int"},
+                    {"key" : "address_role", "val" : "sender", "type" : "string"},
+                    {"key" : "txn_type", "val" : "axfer", "type" : "string"}
+                ],
+                [ 
+                    {"key" : "address", "val" : "ROV6LJIUDCSQEVX2AU7CWGOEZT2DQJUDLOYUP56MQGKVI2ECZXNUSUDOLU", "type" : "address"},
+                    {"key" : "asset_id", "val" : "14531028", "type" : "int"},
+                    {"key" : "address_role", "val" : "receiver", "type" : "string"},
+                    {"key" : "txn_type", "val" : "axfer", "type" : "string"}
+                ],
+                [ 
+                    {"key" : "application_id", "val" : "14877441", "type" : "int"},
+                    {"key" : "txn_type", "val" : "appl", "type" : "string"}
+                ]
+            ],
+            "logMappings" : [
+                {
+                    "mappingName" : "ECO Transaction",
+                    "singleTxnFilters" : {
+                        "tx-type" : ["axfer"],
+                        "asset-transfer-transaction.asset-id" : ["14967831"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "ECO Transaction", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "user address" : { "parameter" : { "key" : "sender", "type" : "string" }, "nullable" : false },
+                            "receiver" : { "parameter" : { "key" : "asset-transfer-transaction.receiver", "type" : "string" }, "nullable" : false },
+                            "ECO amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" }, "nullable" : false }
+                        }
+                    ]                
+                },
+                {
+                    "mappingName" : "TRAN Transaction",
+                    "singleTxnFilters" : {
+                        "tx-type" : ["axfer"],
+                        "asset-transfer-transaction.asset-id" : ["14967831"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "TRAN Transaction", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "receiver" : { "parameter" : { "key" : "asset-transfer-transaction.receiver", "type" : "string" }, "nullable" : false },
+                            "TRAN amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" }, "nullable" : false }
+                        }
+                    ]                
+                },
+                {
+                    "mappingName" : "ASC Call",
+                    "singleTxnFilters" : {
+                        "tx-type" : ["appl"],
+                        "intra-round-offset": ["2"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "Application Call", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "user address" : { "parameter" : { "key" : "sender", "type" : "string" }, "nullable" : false }
+                        }
+                    ]                
+                }
+            ]
+        }
+    ]
+}

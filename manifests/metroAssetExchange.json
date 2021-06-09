@@ -1,0 +1,77 @@
+{
+    "xesExtensions" : [
+        {"name" : "Time", "prefix" : "time", "uri" : "http://www.xes-standard.org/time.xesext"},
+        {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"},
+        {"name" : "Identity", "prefix" : "identity", "uri" : "http://www.xes-standard.org/identity.xesext"}
+    ],
+    "xesGlobals" : [
+        
+    ],
+    "xesClassifiers" : [
+        
+    ],
+    "switches" : {
+        
+    },
+    "mappings" : [
+        {   
+            "indexerFilters" : [
+                [ 
+                    {"key" : "address", "val" : "TEDCXP74XZ7OLAE2HQC5RLUQMNHZAKSGARAQPOM3EJYJSJQN6LZBQQCPDU", "type" : "address"},
+                    {"key" : "asset_id", "val" : "14638139", "type" : "int"},
+                    {"key" : "address_role", "val" : "sender", "type" : "string"},
+                    {"key" : "txn_type", "val" : "axfer", "type" : "string"}
+                ],
+                [ 
+                    {"key" : "address", "val" : "ROV6LJIUDCSQEVX2AU7CWGOEZT2DQJUDLOYUP56MQGKVI2ECZXNUSUDOLU", "type" : "address"},
+                    {"key" : "asset_id", "val" : "14531028", "type" : "int"},
+                    {"key" : "address_role", "val" : "receiver", "type" : "string"},
+                    {"key" : "txn_type", "val" : "axfer", "type" : "string"}
+                ]
+            ],
+            "logMappings" : [
+                {
+                    "mappingName" : "ECO Transactions",
+                    "singleTxnFilters" : {
+                        "asset-transfer-transaction.asset-id" : ["14531028"],
+                        "asset-transfer-transaction.amount" : ["15"]
+
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "ECO Payment", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "user address" : { "parameter" : { "key" : "sender", "type" : "string" }, "nullable" : false },
+                            "ECO amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" }, "nullable" : false }
+                        }
+                    ]                
+                },
+                {
+                    "mappingName" : "METRO Transactions",
+                    "singleTxnFilters" : {
+                        "asset-transfer-transaction.asset-id" : ["14638139"],
+                        "asset-transfer-transaction.amount" : ["1"]
+                    },
+                    "traceMappings" : [
+                        {
+                            "identifier:id" : { "parameter" : { "key" : "group", "type" : "string" } }
+                        }
+                    ],
+                    "eventMappings" : [
+                        {
+                            "concept:name" : { "static" : { "value" : "METRO Collection", "type" : "string" } },
+                            "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
+                            "user address" : { "parameter" : { "key" : "asset-transfer-transaction.receiver", "type" : "string" }, "nullable" : false },
+                            "METRO amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" }, "nullable" : false }
+                        }
+                    ]                
+                }
+            ]
+        }
+    ]
+}

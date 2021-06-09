@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!--This file has been generated with the OpenXES library. It conforms-->
+<!--to the XML serialization of the XES standard for log storage and-->
+<!--management.-->
+<!--XES standard version: 1.0-->
+<!--OpenXES library version: 1.0RC7-->
+<!--OpenXES is available from http://www.openxes.org/-->
+<log xes.version="1.0" xes.features="nested-attributes" openxes.version="1.0RC7">
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
+	<extension name="Identity" prefix="identity" uri="http://www.xes-standard.org/identity.xesext"/>
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
+	<trace>
+		<string key="identifier:id" value="D6D8O1ewVA3Y6rTf0WUbuDfyDwu6tgPwYhKmPKECP/A="/>
+		<event>
+			<string key="concept:name" value="ECO Collection"/>
+			<date key="time:timestamp" value="2021-03-20T23:45:36.000Z"/>
+			<string key="user address" value="T5HO4K4RAPASDATFJRTPW66ADGOGSR6DPTPI6PGH54KVV76NYCH7LB4NUE"/>
+			<string key="sender" value="LXPP6OQ4R63MQVODQ3EAWDLT7QXKOIWTUQQDJAVEWHT3IG3FHOETT7ZBDM"/>
+			<int key="ECO amount" value="15"/>
+		</event>
+		<event>
+			<string key="concept:name" value="Algo Payment"/>
+			<date key="time:timestamp" value="2021-03-20T23:45:36.000Z"/>
+			<string key="user address" value="T5HO4K4RAPASDATFJRTPW66ADGOGSR6DPTPI6PGH54KVV76NYCH7LB4NUE"/>
+			<string key="receiver" value="ROV6LJIUDCSQEVX2AU7CWGOEZT2DQJUDLOYUP56MQGKVI2ECZXNUSUDOLU"/>
+			<int key="microAlgo amount" value="1500000"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="identifier:id" value="H//i/L3rdkNo/vJSbSXQjtEBuL7kFLlN3jJ4zUWhH+o="/>
+		<event>
+			<string key="concept:name" value="Algo Payment"/>
+			<date key="time:timestamp" value="2021-03-20T23:24:53.000Z"/>
+			<string key="user address" value="T5HO4K4RAPASDATFJRTPW66ADGOGSR6DPTPI6PGH54KVV76NYCH7LB4NUE"/>
+			<string key="receiver" value="ROV6LJIUDCSQEVX2AU7CWGOEZT2DQJUDLOYUP56MQGKVI2ECZXNUSUDOLU"/>
+			<int key="microAlgo amount" value="15000000"/>
+		</event>
+	</trace>
+</log>

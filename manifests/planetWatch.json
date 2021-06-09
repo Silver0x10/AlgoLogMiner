@@ -11,7 +11,12 @@
         
     ],
     "switches" : {
-        
+        "addresses": {
+            "BY6UJNZ2MD3AZC2K2KQJW7W7OWPGGIBNOSZGFZQ6L426BTGO5G2FOI6VPI" : "PlanetWatch",
+            "PJLPUBJMHDYKL2EYGICXWSASANWTTQA7DBQTH3UJQTQDIA7LEV6M6BHQVY" : "manager1",
+            "ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W754" : "manager2",
+            "OHN4YUFXM6ZJGBOC5ANUZFKNDGA4LFA75TLJINZ2AU2PGS2VKTSCRXCVRY" : "manager3"
+        }
     },
     "mappings" : [
         {   
@@ -22,22 +27,29 @@
                     {"key" : "min_amount", "val" : "1", "type" : "int"},
                     {"key" : "asset_id", "val" : "27165954", "type" : "int"},
                     {"key" : "address_role", "val" : "sender", "type" : "string"}
+                ],
+                [ 
+                    {"key" : "address", "val" : "PJLPUBJMHDYKL2EYGICXWSASANWTTQA7DBQTH3UJQTQDIA7LEV6M6BHQVY", "type" : "address"},
+                    {"key" : "min_round", "val" : "8712119", "type" : "int"},
+                    {"key" : "min_amount", "val" : "1", "type" : "int"},
+                    {"key" : "asset_id", "val" : "27165954", "type" : "int"},
+                    {"key" : "address_role", "val" : "sender", "type" : "string"}
                 ]
             ],
             "logMappings" : [
                 {
                     "mappingName" : "",
                     "singleTxnFilters" : {
-                        "tx-type" : ["axfer"]
+                        "tx-type" : ["axfer"],
+                        "sender" : ["BY6UJNZ2MD3AZC2K2KQJW7W7OWPGGIBNOSZGFZQ6L426BTGO5G2FOI6VPI", "PJLPUBJMHDYKL2EYGICXWSASANWTTQA7DBQTH3UJQTQDIA7LEV6M6BHQVY", "ZW3ISEHZUHPO7OZGMKLKIIMKVICOUDRCERI454I3DB2BH52HGLSO67W754", "OHN4YUFXM6ZJGBOC5ANUZFKNDGA4LFA75TLJINZ2AU2PGS2VKTSCRXCVRY"]
                     },
                     "traceMappings" : [
                         {
-                            "identifier:id" : { "static" : { "value" : "test", "type" : "string" } }
+                            "identifier:id" : { "parameter" : { "key" : "sender", "type" : "string" } }
                         }
                     ],
                     "eventMappings" : [
                         {
-                            "concept:name" : { "static" : { "value" : "Planet Release", "type" : "string" }, "nullable" : false },
                             "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
                             "receiver" : { "parameter" : { "key" : "asset-transfer-transaction.receiver", "type" : "string" }, "nullable" : false },
                             "amount" : { "parameter" : { "key" : "asset-transfer-transaction.amount", "type" : "int" }, "nullable" : false }
