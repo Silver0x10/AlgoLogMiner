@@ -21,6 +21,7 @@ def receiveItems(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_cl
     data["actor"] = "Customer"
     data["n-items"] = str(nItemsReceived)
     json_data = json.dumps(data, indent=2)
+    print("receive items")
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
     # print(json_data)
 
@@ -34,6 +35,7 @@ def deliverItems(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_cl
     data["actor"] = "Carrier"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
+    print("deliver items")
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
     # print(json_data)
 
@@ -47,6 +49,7 @@ def loadTruck(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_clien
     data["actor"] = "Carrier"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
+    print("load truck")
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
     # print(json_data)
 
@@ -60,6 +63,7 @@ def sendToCarrierDock(TraceId, managerAddr, managerPassphrase, receiverAddr, alg
     data["actor"] = "Amazon Packager"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
+    print("send to carrier dock")
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
     # print(json_data)
 
@@ -73,6 +77,7 @@ def receiveAndPackageItems(TraceId, managerAddr, managerPassphrase, receiverAddr
     data["actor"] = "Amazon Packager"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
+    print("receive and package items")
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
     # print(json_data)
 
@@ -86,6 +91,7 @@ def placeInBin(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_clie
     data["actor"] = "Amazon Picker"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
+    print("place in bin")
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
     # print(json_data)
 
@@ -99,6 +105,7 @@ def pickItems(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_clien
     data["actor"] = "Amazon Picker"
     data["n-items"] = str(nItems)
     json_data = json.dumps(data, indent=2)
+    print("pick items")
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
     # print(json_data)
 
@@ -120,13 +127,14 @@ def takePayment(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_cli
     data["actor"] = "Credit Card Company"
     data["accepted"] = str(accepted)
     json_data = json.dumps(data, indent=2)
+    print("take payment")
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
     # print(json_data)
     
     return accepted
 
 
-def checkout(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItems):
+def payOrder(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItems):
     tryPayment = True
     attempts = 1
     data = {}
@@ -138,13 +146,13 @@ def checkout(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client
     while(tryPayment):
         data["attempt-num"] = str(attempts)
         json_data = json.dumps(data, indent=2)
+        print("pay order")
         newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
         # print(json_data)
 
         paymentAccepted = takePayment(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client)
         
         if(paymentAccepted): # Send Order
-            # sendOrder(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItems)
             return nItems
         elif(random() > 0.9):
             tryPayment = False
@@ -165,13 +173,14 @@ def addItemToCart(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_c
     data["n-items"] = str(itemsInTheCart)
     data["actor"] = "Customer"
     json_data = json.dumps(data, indent=2)
+    print("add item to cart")
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
 
     # Done Shopping?
     if(random() > 0.5): # No
         return browseProducts(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, itemsInTheCart)
     else: # Yes
-        return checkout(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, itemsInTheCart)
+        return payOrder(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, itemsInTheCart)
 
 def browseProducts(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, itemsInTheCart):
     data = {}
@@ -179,6 +188,7 @@ def browseProducts(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_
     data["event-name"] = 0 # "Browse Products on Amazon"
     data["actor"] = "Customer"
     json_data = json.dumps(data, indent=2)
+    print("browse products")
     newTransaction(algod_client, managerAddr, managerPassphrase, receiverAddr, 0, json_data)
 
     return addItemToCart(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, itemsInTheCart)
@@ -188,28 +198,17 @@ def newOrderTrace(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_c
     nItemsOrdered = browseProducts(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, 0)
     if(nItemsOrdered): sendOrder(TraceId, managerAddr, managerPassphrase, receiverAddr, algod_client, nItemsOrdered)
 
-def test(id):
-    print(id)
+
 
 def main(algod_client,idFirstNewTrace, newTraces):
-    manager = "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU"
-    passphrase = "wolf profit edge place venture once fatal rifle iron able bounce capital section poet dignity artefact mandate mutual music tree hover mimic moment ability hotel"
-    fantoccio = "IWBZYBPTO4INJBALPJ3PDUPPSBKTGIYVIY3PCGL6LRJCIBEIIIKSF7UL2Y"
+    manager = "AIRPL6IIM55OMANZL52HFUYYKXDS3LEROEVZ4SJLRDWS4D3MOHMRQWTVL4"
+    passphrase = "smooth simple elegant orchard grass aware much stuff all soup spy pilot ring country marriage dirt spy claw canvas yard lucky book marriage able coffee"
+    fantoccio = "V63MNOIIVZFST63GSWDVAIDSWUFSV5UXSKMN3T3EB4DHNGFUPFFZIG3A6Y"
+
     
-    processes = []
-    while(newTraces > 0):
-        x = min(os.cpu_count(), newTraces)
-        for i in range(x):
-            print("Trace Id: " + str(idFirstNewTrace+i))
-            processes.append(Process(target=newOrderTrace(idFirstNewTrace+i, manager, passphrase, fantoccio, algod_client)))
-            # processes.append(Process(target=test(idFirstNewTrace+i)))
-
-        for process in processes:
-            process.start()
-
-        for process in processes:
-            process.join()
-        newTraces = newTraces - x
+    for i in range(newTraces):
+        print("Trace Id: " + str(idFirstNewTrace+i))
+        newOrderTrace(idFirstNewTrace+i, manager, passphrase, fantoccio, algod_client)
 
 
 if __name__ == "__main__":
@@ -218,7 +217,7 @@ if __name__ == "__main__":
     parser.add_argument("--testnet", help="New transactions on the testnet", action="store_true")
     parser.add_argument("--address", help="Algorand Node address", default="http://localhost:4001")
     parser.add_argument("--token", help="Algorand Node token", default="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    parser.add_argument("--nextTraceIdFile", help="File containing the id of the next trace", default="./nextTraceIdLocal.txt")
+    parser.add_argument("--nextTraceIdFile", help="File containing the id of the next trace", default="./nextTraceId.txt")
     args = parser.parse_args()
     if args.testnet:
         algod_address = "https://testnet.algoexplorerapi.io" 

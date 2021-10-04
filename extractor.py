@@ -115,7 +115,7 @@ def filterTransactions(transactions, txnFilters):
             if(value == None):
                 ok = False
                 break
-            print(str(value) in txnFilters[filter])
+            # print(str(value) in txnFilters[filter])
             if(str(value) not in txnFilters[filter]): 
                 ok = False
                 break

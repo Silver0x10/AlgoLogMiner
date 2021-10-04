@@ -32,14 +32,9 @@
         {   
             "indexerFilters" : [
                 [ 
-                    {"key" : "address", "val" : "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU", "type" : "address"},
-                    {"key" : "min_round", "val" : "14023445", "type" : "int"},
-                    {"key" : "max_round", "val" : "14068300", "type" : "int"} 
-                ],
-                [ 
-                    {"key" : "address", "val" : "PF3G3CHB4F2AFYNB5U2GM7Z3MZ4CQKXH65J4GBQHXJIYOIQ6VEGJXBPBXU", "type" : "address"},
-                    {"key" : "min_round", "val" : "0", "type" : "int"},
-                    {"key" : "max_round", "val" : "1000", "type" : "int"} 
+                    {"key" : "address", "val" : "AIRPL6IIM55OMANZL52HFUYYKXDS3LEROEVZ4SJLRDWS4D3MOHMRQWTVL4", "type" : "address"},
+                    {"key" : "min_round", "val" : "17049792", "type" : "int"},
+                    {"key" : "max_round", "val" : "17050387", "type" : "int"} 
                 ]
             ],
             "logMappings" : [
