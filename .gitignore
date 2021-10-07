@@ -5,6 +5,6 @@
 /AlgoNim_Matches/
 /traces/
 /apps/__pycache__/
-/test.py/
+test.py
 /testManifest.json/
 /transactionsFromIndexer.txt
