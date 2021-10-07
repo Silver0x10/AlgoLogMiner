@@ -4,26 +4,18 @@
         {"name" : "Concept", "prefix" : "concept", "uri" : "http://code.deckfour.org/xes/concept.xesext"},
         {"name" : "Identity", "prefix" : "identity", "uri" : "http://www.xes-standard.org/identity.xesext"}
     ],
-    "xesGlobals" : [
-        
-    ],
-    "xesClassifiers" : [
-        
-    ],
-    "switches" : {
-        
-    },
     "mappings" : [
         {   
             "indexerFilters" : [
                 [ 
-                    {"key" : "address", "val" : "YERHLDMYRIHDEHYQYQUFDXRQ7ATLFNIY6RXM7XDAWXLV4LCBCEDDCX4K7M", "type" : "address"},
+                    {"key" : "address", "val" : "KH72NV5KTMS7NRFKQNFGXES56S4NECOYHSZVRMNVTQA3PTS2PFX6R6PIO4", "type" : "address"},
                     {"key" : "asset_id", "val" : "14531028", "type" : "int"},
-                    {"key" : "address_role", "val" : "sender", "type" : "string"},
+                    {"key" : "address_role", "val" : "receiver", "type" : "string"},
                     {"key" : "txn_type", "val" : "axfer", "type" : "string"}
                 ],
                 [ 
-                    {"key" : "application_id", "val" : "14877441", "type" : "int"},
+                    {"key" : "address", "val" : "KH72NV5KTMS7NRFKQNFGXES56S4NECOYHSZVRMNVTQA3PTS2PFX6R6PIO4", "type" : "address"},
+                    {"key" : "address_role", "val" : "sender", "type" : "string"},
                     {"key" : "txn_type", "val" : "appl", "type" : "string"}
                 ]
             ],
@@ -31,7 +23,8 @@
                 {
                     "mappingName" : "ASA Transaction",
                     "singleTxnFilters" : {
-                        "tx-type" : ["axfer"]
+                        "tx-type" : ["axfer"],
+                        "sender" : ["YERHLDMYRIHDEHYQYQUFDXRQ7ATLFNIY6RXM7XDAWXLV4LCBCEDDCX4K7M"]
                     },
                     "traceMappings" : [
                         {
@@ -50,7 +43,8 @@
                 {
                     "mappingName" : "ASC Call",
                     "singleTxnFilters" : {
-                        "tx-type" : ["appl"]
+                        "tx-type" : ["appl"],
+                        "application-transaction.application-id" : ["14877441"]
                     },
                     "traceMappings" : [
                         {
@@ -61,7 +55,6 @@
                         {
                             "concept:name" : { "static" : { "value" : "Application Call", "type" : "string" } },
                             "time:timestamp" : { "parameter" : { "key" : "round-time", "type" : "date" }, "nullable" : false },
-                            "user address" : { "parameter" : { "key" : "sender", "type" : "string" }, "nullable" : false },
                             "global value" : { "parameter" : { "key" : "global-state-delta.0.value.uint", "type" : "int" }, "nullable" : false },
                             "local value" : { "parameter" : { "key" : "local-state-delta.0.delta.0.value.uint", "type" : "int" }, "nullable" : false }
                         }
