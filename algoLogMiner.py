@@ -44,8 +44,8 @@ def test(myIndexer):
             print(json.dumps(response, indent=2, sort_keys=True))
 
 
-def main(indexer_token, indexer_address, manifestPath, outputXesPath):
-    theIndexer = indexer.IndexerClient(indexer_token, indexer_address, headers={'User-Agent': '?'})
+def main(indexer_token, indexer_URL, manifestPath, outputXesPath):
+    theIndexer = indexer.IndexerClient(indexer_token, indexer_URL, headers={'User-Agent': '?'})
 
     extract(theIndexer, manifestPath, outputXesPath)
     sys.exit(0)
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     parser.add_argument("manifest", help="Manifest path. This document is needed by the extractor to generate the xes file")
     parser.add_argument("-o", "--output", help="Path of the xes that will be generated", default="extractedEventLog.xes")
     parser.add_argument("-t", "--indexerToken", help="Token of the indexer", default="")
-    parser.add_argument("-a", "--indexerAddress", help="Address of the indexer. Do not use with option -b", default="http://localhost:8980")
+    parser.add_argument("-u", "--indexerURL", help="URL of the indexer. Do not use with option -b", default="http://localhost:8980")
     parser.add_argument("-b", "--blockchain", choices=["testnet", "betanet", "mainnet"], help="Select the network between: Testnet indexer at https://testnet.algoexplorerapi.io/idx2; Betanet indexer at https://betanet.algoexplorerapi.io/idx2; Mainnet indexer at https://algoexplorerapi.io/idx2. Do not use with option -a. ")
     args = parser.parse_args()
 
@@ -68,12 +68,12 @@ if __name__ == "__main__":
     xesFilePath = args.output if args.output.lower().endswith(('.xes')) else args.output + ".xes"
     indexer_token = args.indexerToken
     if(args.blockchain == "testnet"):
-        indexer_address = "https://testnet.algoexplorerapi.io/idx2"
+        indexer_URL = "https://testnet.algoexplorerapi.io/idx2"
     elif(args.blockchain == "betanet"):
-        indexer_address = "https://betanet.algoexplorerapi.io/idx2"
+        indexer_URL = "https://betanet.algoexplorerapi.io/idx2"
     elif(args.blockchain == "mainnet"):
-        indexer_address = "https://algoexplorerapi.io/idx2"
+        indexer_URL = "https://algoexplorerapi.io/idx2"
     else:
-        indexer_address = args.indexerAddress
+        indexer_URL = args.indexerURL
 
-    main(indexer_token, indexer_address, manifestPath, xesFilePath)
+    main(indexer_token, indexer_URL, manifestPath, xesFilePath)
