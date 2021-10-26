@@ -40,6 +40,7 @@ def setExtension(log, extList):
         if(ext["name"] == "Time"): log.get_extensions().add(XTimeExtension())
         elif(ext["name"] == "Identity"): log.get_extensions().add(XIdentityExtension())
         elif(ext["name"] == "Concept"): log.get_extensions().add(XConceptExtension())
+        # ToDo: Add more extensions
 
 def setGlobals(log, globalAttributes):
     logAttrList = None

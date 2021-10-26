@@ -9,6 +9,9 @@
 	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
 	<extension name="Identity" prefix="identity" uri="http://www.xes-standard.org/identity.xesext"/>
 	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
+	<global scope="event">
+		<int key="ECO amount" value="0"/>
+	</global>
 	<trace>
 		<string key="identifier:id" value="lG291QyTxLNk5ormR4OLxbwOasb9InWdKqFIC3RTRj4="/>
 		<event>
